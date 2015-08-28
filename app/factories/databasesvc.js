@@ -8,10 +8,12 @@ angular.module('app').factory("dataSVC", ["$http", "$location", function($http, 
                     .success(function(result) {
                         callback(result);
                     })
-                    .error(function(e, r, s) {
+                    .error(function(e, r, s,t,h) {
 					alert(e)
 					alert(r)
 					alert(s)
+					alert(t)
+					alert(h)
 callback(e);
                     });
            
@@ -24,10 +26,12 @@ callback(e);
                     .success(function(result) {
                         callback(result);
                     })
-                    .error(function(e, r, s) {
+                    .error(function(e, r, s,t,h) {
 					alert(e)
 					alert(r)
 					alert(s)
+					alert(t)
+					alert(h)
 callback(e);
                     });
            
