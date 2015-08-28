@@ -27,6 +27,8 @@ angular.module('app')
         var self = this;
 		self.data=[];
 		dataSVC.getData(function(d){
+		
+				alert('p');
 			self.data=d.data;
 				  $timeout(function(){
    //initialize swiper when document ready  
