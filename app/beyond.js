@@ -5,7 +5,7 @@ app.controller('AppCtrl', [
         function($rootScope, dataSVC) {
 	$rootScope.categories=[];
            	dataSVC.getCategories(function(d){
-				alert('s');
+				alert(d.Message);
 				$rootScope.categories=d.data;
 			});
 			$rootScope.pageTitle='Kitbucket';
