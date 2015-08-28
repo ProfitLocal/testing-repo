@@ -1,22 +1,10 @@
-// JavaScript Document
-$( window ).load(function() {
-  checkOrientation();
-  setHeight()  
-});
-
-//
-$( window ).resize(function() {
-  checkOrientation();
-  setHeight() 
-});
-//
-$(window).load(function() {
-
-	"use strict";
-
-	 $('#preloader').delay(400).fadeOut('slow'); // will fade out the white DIV that covers the website.
-    $('#preloader .wc_loading').fadeOut();
-	
+//Sidebar Menu Handle
+angular.module('app')
+    .directive('sidebarMenu', function () {
+        return {
+            restrict: 'AC',
+            link: function (scope, el, attr) {
+                
    //initialize swiper when document ready  
     var mySwiper = new Swiper ('.swiper-container', {
 		// Optional parameters
@@ -29,7 +17,7 @@ $(window).load(function() {
 		pagination: '.swiper-pagination',
 		paginationClickable: true
 	});
-	
+	console.log($('nav#menu').size());
 	//
 	$('nav#menu').mmenu({
 		extensions	: [ 'effect-slide-menu', 'pageshadow' ],
@@ -56,23 +44,7 @@ $(window).load(function() {
 				]
 			}
 		]
-	});  
-	
-})
-// check screen orientation
-function checkOrientation(){
-	if($( window ).width() > $( window ).height()){
-		$("body").addClass('horizontal')
-	}
-	
-	else
-	{
-		$("body").removeClass('horizontal')
-	}
-}
-
-// set min-height of screen
-function setHeight(){
-	var wH = $(window).height();
-	$(".minHeight").css( 'min-height' , wH )
-}
+	}); 
+            }
+        };
+    });

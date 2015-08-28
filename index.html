@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <title>KitBucket</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="lib/jquery/custom.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href="assets/css/custom.css" rel="stylesheet" />
@@ -15,32 +15,18 @@
 <body>
 <div class="wrapper"> 
   <!-- loading screen -->
-  
-  <div class="wc_wrap login_wrap minHeight">
-    <div class="container-fluid">
-      <div class="logo_box"> <a href="#" > <img src="assets/img/welcome_logo_white.png" alt="kitbucket" /> </a>
-        <h3 class="tagline">Your online kirana store</h3>
-      </div>
-      <div class="user_sec">
-        <div class="form-group form-group-lg">
-          <div class="input-group"> <span class="input-group-addon" id="mobile"><i class="fa fa-lock"></i></span>
-            <input type="number" class="form-control" placeholder="Mobile number" aria-describedby="mobile">
-          </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-          <div class="input-group"> <span class="input-group-addon" id="password"><i class="fa fa-key"></i></span>
-            <input type="password" class="form-control" placeholder="password" aria-describedby="password">
-          </div>
-          <div class="text-right help-block"><a href="#" class="btn btn-link">Forgotten Password?</a></div>
-        </div>
-        <div class="form-group">
-          <input type="button" value="Login" class="btn btn-lg btn-block btn-darkGreen"  />
-        </div>
-      </div>
-    </div>
-  </div>
+  <div  ui-view ></div>
 </div>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-ui-router/angular-ui-router.js"></script>
+    <script src="lib/angular/angular-ocLazyLoad/ocLazyLoad.js"></script>
+    <script src="lib/angular/angular-ui-bootstrap/ui-bootstrap.js"></script>
+	<script src="app/app.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/config.lazyload.js"></script>
+    <script src="app/config.router.js"></script>
+    <script src="app/beyond.js"></script>
+    <script src="app/factories/databasesvc.js"></script>
 <!-- /page -->
 </body>
 </html>
