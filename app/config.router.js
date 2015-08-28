@@ -46,6 +46,7 @@ angular.module('app')
 											   'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.1.2/js/swiper.jquery.min.js',
 											   'assets/css/custom.css',
 											   'app/directives/menu.js',
+											   'app/directives/swiper.js',
                                         ]
                                     });
                                 }
@@ -68,8 +69,28 @@ angular.module('app')
                                         serie: true,
                                         files: [
                                                'app/controllers/home.js' ,
-											   'app/directives/menu.js',
-											   'app/directives/swiper.js',
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+
+                })
+                .state('app.cat', {
+                    url: '/category/:catID',
+                    templateUrl: 'views/category_product.html',
+                    ncyBreadcrumb: {
+                        label: 'home',
+                        description: 'category_product Data'
+                    },
+                    resolve: {
+                        deps: [
+                                '$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        serie: true,
+                                        files: [
+                                               'app/controllers/category_product.js' ,
                                         ]
                                     });
                                 }

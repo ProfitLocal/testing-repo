@@ -1,11 +1,7 @@
 
-app.controller('homeController', function($scope,dataSVC) {
-$scope.data=[];
-dataSVC.getData(function(d){
-	console.log(d);
-	$scope.data=d.data;
-});
-         
+app.controller('homeController', function($scope,$rootScope,dataSVC) {
+$rootScope.pageTitle='Kitbucket';
+			$rootScope.backLink='#menu';
    //initialize swiper when document ready  
     var mySwiper = new Swiper ('.swiper-container', {
 		// Optional parameters
