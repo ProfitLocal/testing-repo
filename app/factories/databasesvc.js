@@ -9,6 +9,9 @@ angular.module('app').factory("dataSVC", ["$http", "$location", function($http, 
                         callback(result);
                     })
                     .error(function(e, r, s) {
+					alert(e)
+					alert(r)
+					alert(s)
 callback(e);
                     });
            
@@ -22,6 +25,9 @@ callback(e);
                         callback(result);
                     })
                     .error(function(e, r, s) {
+					alert(e)
+					alert(r)
+					alert(s)
 callback(e);
                     });
            
