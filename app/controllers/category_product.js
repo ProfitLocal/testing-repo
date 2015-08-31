@@ -2,6 +2,7 @@
 app.controller('category_productController', function($scope,$rootScope,dataSVC,$stateParams) {
 	$rootScope.pageTitle='Back';
 	$rootScope.backLink='#/app/home';
+	$rootScope.backImage='glyphicon-menu-left';
 	/*$scope.category={
 		CategoryId:$stateParams.catID,
 		CategoryName:'Test',

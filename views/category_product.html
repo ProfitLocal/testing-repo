@@ -30,9 +30,9 @@
           <div class="actions clearfix">
             <div class="cart">
               <div class="input-group"> <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-minus"></i></button>
-                </span> <span class="cartText form-control" >12</span> <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-default" type="button" ng-click="$root.removeFromCart(p)"><i class="fa fa-minus"></i></button>
+                </span> <span class="cartText form-control" >{{p.Qnt!=undefined?p.Qnt:0}}</span> <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="$root.addToCart(p)"><i class="fa fa-plus"></i></button>
                 </span> </div>
             </div>
           </div>
@@ -43,5 +43,6 @@
           </div>
         </div>
       </li>
+	  <li ng-if="products.length==0">No product under this category yet</li>
 	  </ul>
 	</div>

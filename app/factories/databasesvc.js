@@ -1,38 +1,30 @@
-angular.module('app').factory("dataSVC", ["$http", "$location", function($http, $location) {
+angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", function($http, $location,$rootScope) {
 		var apiurl="http://122.160.153.14:182/";
         function getData(callback) {
             var url = apiurl+"api/Home/GetListProducts";
-           
-               // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
-                $http.post(url, {})
+            $http.post(url, {})
                     .success(function(result) {
                         callback(result);
                     })
                     .error(function(e, r, s,t,h) {
-					alert(e)
-					alert(r)
-					alert(s)
-					alert(t)
-					alert(h)
-callback(e);
+						alert(e)
+						alert(r)
+						alert(s)
+						alert(t)
+						alert(h)
+						callback(e);
                     });
            
         }
 		function getCategories(callback) {
             var url = apiurl+"api/Home/GetListCategories";
-           
-               // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
-                $http.post(url, {})
+                    $http.post(url, {})
                     .success(function(result) {
                         callback(result);
                     })
-                    .error(function(e, r, s,t,h) {
-					console.log(e)
-					console.log(r)
-					console.log(s)
-					console.log(t)
-					console.log(h)
-callback(e);
+                    .error(function(e, r, s,t,h) {	
+						$rootScope.error='No internet connection available';
+						$rootScope.appLoaded=false;
                     });
            
         }
@@ -45,7 +37,8 @@ callback(e);
                         callback(result);
                     })
                     .error(function(e, r, s) {
-callback(e);
+						$rootScope.error='No internet connection available';
+						$rootScope.appLoaded=false;
                     });
            
         }
@@ -58,7 +51,8 @@ callback(e);
                         callback(result);
                     })
                     .error(function(e, r, s) {
-callback(e);
+						$rootScope.error='No internet connection available';
+						$rootScope.appLoaded=false;
                     });
            
         }
