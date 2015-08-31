@@ -1,13 +1,13 @@
 ﻿'use strict';
 
-app.controller('AppCtrl', ['$rootScope', 'dataSVC', function($rootScope, dataSVC) {
+app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$modal', function($scope,$rootScope, dataSVC, $localStorage,$modal) {
 	$rootScope.categories=[];
 	$rootScope.appLoaded=false;
 	$rootScope.error='';
+	//$rootScope.sellerID='';
     dataSVC.getCategories(function(d){
-				//alert(d.Message);
-				$rootScope.appLoaded=true;
-				$rootScope.categories=d.data;
+		
+		$rootScope.categories=d.data;
 	});
 	$rootScope.pageTitle='Kitbucket';
 	$rootScope.backLink='#menu';
@@ -21,7 +21,7 @@ app.controller('AppCtrl', ['$rootScope', 'dataSVC', function($rootScope, dataSVC
 		var	 isFound=false;
 		for(var i=0;i<$rootScope.cart.items.length;i++)
 		{
-			if($rootScope.cart.items[i].ProductID==obj.ProductID)
+			if($rootScope.cart.items[i].SellerProductID==obj.SellerProductID)
 			{
 				isFound=true;
 				$rootScope.cart.items[i].Qnt=$rootScope.cart.items[i].Qnt+1;
@@ -30,10 +30,10 @@ app.controller('AppCtrl', ['$rootScope', 'dataSVC', function($rootScope, dataSVC
 			}
 		}
 		if(isFound==false){
-			$rootScope.cart.items.push({ProductID:obj.ProductID,ProductName:obj.ProductName,ProductImage:obj.ProductImage,Qnt:1});
+			$rootScope.cart.items.push({SellerProductID:obj.SellerProductID,ProductName:obj.ProductName,ProductImage:obj.ProductImage,OfferPrice:obj.OfferPrice,SellPrice:obj.SellPrice,Qnt:1});
 			obj.Qnt=1;
 		}
-		$rootScope.cart.total=$rootScope.cart.total+parseInt(obj.BasePrice);
+		$rootScope.cart.total=$rootScope.cart.total+parseFloat(obj.OfferPrice);
 		$rootScope.cart.itemCount=$rootScope.cart.itemCount+1;
 	}
 	$rootScope.removeFromCart=function(obj){
@@ -41,7 +41,7 @@ app.controller('AppCtrl', ['$rootScope', 'dataSVC', function($rootScope, dataSVC
 		if(obj.Qnt!=undefined&&obj.Qnt>0){
 			for(var i=0;i<$rootScope.cart.items.length;i++)
 			{
-				if($rootScope.cart.items[i].ProductID==obj.ProductID)
+				if($rootScope.cart.items[i].SellerProductID==obj.SellerProductID)
 				{
 					$rootScope.cart.items[i].Qnt=$rootScope.cart.items[i].Qnt-1;
 					obj.Qnt=$rootScope.cart.items[i].Qnt;
@@ -49,7 +49,7 @@ app.controller('AppCtrl', ['$rootScope', 'dataSVC', function($rootScope, dataSVC
 						
 					index=i;
 					}
-					$rootScope.cart.total=$rootScope.cart.total-parseInt(obj.BasePrice);
+					$rootScope.cart.total=$rootScope.cart.total-parseFloat(obj.OfferPrice);
 					$rootScope.cart.itemCount=$rootScope.cart.itemCount-1;
 					break;
 				}
@@ -59,5 +59,37 @@ app.controller('AppCtrl', ['$rootScope', 'dataSVC', function($rootScope, dataSVC
 			
 			$rootScope.cart.items.splice(index,1);
 		}
+	}
+	$scope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) {
+		
+        var modalInstance = $modal.open({
+            windowClass: windowClass,
+            templateUrl: templateUrl,
+            controller: ctrl,
+            size: size,
+			resolve: {
+				obj: function() { return obj; }
+			},
+			  controllerAs: "vm"
+        });
+
+        modalInstance.result.then(function(selectedItem) {			
+			if(callback){
+				callback(selectedItem);
+			}
+        }, function() {
+
+        });
+    };
+	$rootScope.$storage = $localStorage.$default({
+          sellerID: ''
+    });
+	if($rootScope.$storage.sellerID==''){
+		$scope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
+			$rootScope.appLoaded=true;
+		});
+	}
+	else{
+		$rootScope.appLoaded=true;
 	}
 }]);

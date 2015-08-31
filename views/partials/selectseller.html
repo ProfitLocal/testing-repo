@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <i class="fa fa-save"></i>
+</div>
+<div class="modal-title">ENTER YOUR PIN-CODE </div>
+<div class="modal-body"  >
+	<div class="form-group">
+            <input type="text" ng-model="vm.pin" class="form-control input-sm" placeholder="Enter PIN-CODE" ng-enter="vm.seachSeller()">
+			<button type="button" class="btn btn-info" ng-click="vm.seachSeller()"><i class="fa fa-search"></i></button>
+	</div>
+	<div class="form-group">
+        <select class="form-control input-sm" ng-model="vm.seller" ng-options="d as d.SellerShopeName for d in vm.sellerList"  ng-change="vm.selectedSeller(vm.seller)">
+            <option value="">Select Driver</option>
+        </select>
+	</div>
+ </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-info" ng-click="vm.save()">Save</button>
+    <button type="button" class="btn btn-info" ng-click="vm.close()">Cancel</button>
+</div>

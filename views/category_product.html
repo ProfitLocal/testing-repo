@@ -39,7 +39,7 @@
           <div class="productDetail">
             <h5 class="productName">{{p.ProductName}}</h5>
             <h5 class="quantity">500ml</h5>
-            <h5 class="price"><span class="oldPrice">Rs. {{p.BasePrice}}</span><span class="newPrice">Rs. {{p.BasePrice}}</span></h5>
+            <h5 class="price"><span class="oldPrice" ng-if="p.SellPrice!=p.OfferPrice")>Rs. {{p.SellPrice}}</span><span class="newPrice">Rs. {{p.OfferPrice}}</span></h5>
           </div>
         </div>
       </li>

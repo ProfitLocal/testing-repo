@@ -28,11 +28,11 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                     });
            
         }
-		function getCategoryProduct(catid,from,to,callback) {
-            var url = apiurl+"api/Home/GetProductsByCategoryId";
+		function getCategoryProduct(catid,sellerID,from,to,callback) {
+            var url = apiurl+"api/Home/GetProductsByCatAndSellerId";
            
                // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
-                $http.post(url, {CatId:catid,From:from,To:to})
+                $http.post(url, {CatId:catid,SellerID:sellerID,From:from,To:to})
                     .success(function(result) {
                         callback(result);
                     })
@@ -56,10 +56,25 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                     });
            
         }
+		function getSeller(pin,callback) {
+            var url = apiurl+"api/Home/GetSellerListByPinCode";
+           
+               // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
+                $http.post(url, {PinCode:pin})
+                    .success(function(result) {
+                        callback(result);
+                    })
+                    .error(function(e, r, s) {
+						$rootScope.error='No internet connection available';
+						$rootScope.appLoaded=false;
+                    });
+           
+        }
 		return {
 			getData:getData,
 			getCategories:getCategories,
 			getCategoryProduct:getCategoryProduct,
-			getSubCategory:getSubCategory
+			getSubCategory:getSubCategory,
+			getSeller:getSeller
 		}
 }]);

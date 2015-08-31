@@ -15,7 +15,9 @@ angular.module('app')
             }
         };*/
 		return {
+            restrict: 'E',
             scope: {
+				index:"="
             },
             templateUrl: 'views/partials/swiper.html',
             replace: true,
@@ -26,11 +28,12 @@ angular.module('app')
     .controller('swiperCtrl', ['$scope', "dataSVC","$timeout", function($scope, dataSVC,$timeout) {
         var self = this;
 		self.data=[];
+		self.loadData=function(){
 		dataSVC.getData(function(d){
 			self.data=d.data;
 				  $timeout(function(){
-   //initialize swiper when document ready  
-    var mySwiper = new Swiper ('.swiper-container', {
+					  console.log(d.data)
+					 var mySwiper = new Swiper ('.swiper-container', {
 		// Optional parameters
 		slidesPerView: 2,
 		spaceBetween: 0
@@ -41,6 +44,10 @@ angular.module('app')
 		pagination: '.swiper-pagination',
 		paginationClickable: true
 	});
+   
 	},1000);
 		});
+		
+		}
+		self.loadData()
 	}]);
