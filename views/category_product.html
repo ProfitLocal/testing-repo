@@ -1,4 +1,5 @@
- <div ng-controller="category_productController">
+ <style ng-bind-html-unsafe="$root.style"></style>
+ <div ng-controller="category_productController" ng-animate="{enter: 'enter', leave: 'leave'}">
  <!-- search panel -->
     <div id="searchPanel">
       <div></div>
@@ -23,7 +24,7 @@
       </div>
     </div>
     <!-- category list-->
-    <ul class="cat_list ">
+    <ul class="cat_list " ng-swipe-right="goToPage('right')" ng-swipe-left="goToPage('left')">
       <li class="" ng-repeat="p in products">
         <div class="cat_item clearfix">
           <div class="imageWrap"><a href="#"><img ng-src="{{p.ProductImage}}" alt=""/></a></div>

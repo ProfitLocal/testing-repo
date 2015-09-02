@@ -3,20 +3,29 @@ app.controller('SellerSelectionController', function DBController($scope, $modal
 	var self=this;
 	self.sellerList=[];
 	self.seller={};
-	self.pin='';
+	self.pin=$rootScope.pin;
+	
 	self.seachSeller=function()
 	{
+		$rootScope.pin=self.pin;
 		dataSVC.getSeller(self.pin,function(d){
 			console.log(d)		
-self.sellerList=d.data;					
+			self.sellerList=d.data;					
 		})
+	}
+	if(self.pin!=undefined&&self.pin!=''){
+		self.seachSeller();
+		self.seller=$rootScope.$storage.seller;
 	}
 	self.selectedSeller=function(d)
 	{
 		/*$rootScope.$storage = $localStorage.$default({
           sellerID: ''
 		});*/
-		$rootScope.$storage.sellerID=d.SellerID;
+		$rootScope.$storage.seller=d;
+		$modalInstance.close('');
+	}
+	self.close=function(){	
 		$modalInstance.close('');
 	}
     self.check =function(selected,db){

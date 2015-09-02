@@ -22,7 +22,8 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 	}*/
 	$scope.products=[];
 	$scope.loadProduct=function(catid){
-		dataSVC.getCategoryProduct(catid,$rootScope.$storage.sellerID,0,20,function(result){
+		$scope.products=[];
+		dataSVC.getCategoryProduct(catid,$rootScope.$storage.seller.SellerID,0,20,function(result){
 			console.log(result.data)
 			$scope.products=result.data;
 			for(var i=0;i<$scope.products.length;i++){
@@ -36,6 +37,7 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 	$scope.loadSubCategory=function(catid){
 		dataSVC.getSubCategory(catid,function(result){		
 			$scope.category=result.data;
+			$rootScope.pageTitle=$scope.category.CategoryName;
 			if($scope.category.Child.length>0){
 				var index=0;
 				for(var i=0;i<$scope.category.Child.length;i++){
@@ -50,11 +52,37 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 		});
 	}
 	$scope.loadSubCategory($stateParams.catID);
+	var catIndex=0;
 	$scope.setCategory=function(obj){
 		for(var i=0;i<$scope.category.Child.length;i++){
 			$scope.category.Child[i].IsActive=false;
+			if(obj.CategoryId==$scope.category.Child[i].CategoryId){
+				catIndex=i;
+			}
 		}
 		obj.IsActive=true;
 		$scope.loadProduct(obj.CategoryId);
 	}
+	 var styles = {
+    // appear from right
+    right: '.enter-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all;   -webkit-transform:translate3d(100%,0,0)  }  .enter-setup.enter-start {   position:absolute;  -webkit-transform:translate3d(0,0,0)}  .leave-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all;   -webkit-transform:translate3d(0,0,0)} .leave-setup.leave-start {   position:absolute;  -webkit-transform:translate3d(-100%,0,0) };',
+    // appear from left
+    left: '.enter-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all; -webkit-transform:translate3d(-100%,0,0)}  .enter-setup.enter-start {   position:absolute;   -webkit-transform:translate3d(0,0,0) }  .leave-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all;  -webkit-transform:translate3d(0,0,0)} .leave-setup.leave-start {   position:absolute;  -webkit-transform:translate3d(100%,0,0) };'
+  };
+	$scope.goToPage=function(side){
+		 $rootScope.style = styles[side];
+		if(side=='right'){
+			if(catIndex>0){
+				catIndex=catIndex-1;
+				$scope.setCategory($scope.category.Child[catIndex]);
+			}
+			
+		}else{
+			if(catIndex<$scope.category.Child.length-1){
+				catIndex=catIndex+1;
+				$scope.setCategory($scope.category.Child[catIndex]);
+			}
+		}
+	} 
+	$rootScope.style = styles['right'];
 });

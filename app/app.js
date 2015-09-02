@@ -3,7 +3,9 @@ var app=angular.module('app', [
     'ui.router',
     'ui.bootstrap',
     'oc.lazyLoad',
-    'ngStorage'
+    'ngStorage',
+	'ngAnimate',
+	'ngTouch',
 	/*'ngAnimate',
     'ngCookies',
     'ngResource',*/

@@ -10,7 +10,11 @@ angular.module('app')
             controllerAs: 'ctrl'
         };
     })	
-    .controller('sidebarCtrl', ['$scope', "dataSVC","$timeout", function($scope, dataSVC,$timeout) {
+    .controller('sidebarCtrl', ['$scope','$rootScope', "dataSVC","$timeout", function($scope,$rootScope, dataSVC,$timeout) {
+		dataSVC.getCategories(function(d){
+		
+		$rootScope.categories=d.data;
+	
       $timeout(function(){
 					$('nav#menu').mmenu({
 					extensions	: [ 'effect-slide-menu', 'pageshadow' ],
@@ -38,5 +42,5 @@ angular.module('app')
 						}
 					]
 				});
-			},1000);
+			},1000);});
 	}]);

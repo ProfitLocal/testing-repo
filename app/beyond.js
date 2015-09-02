@@ -5,10 +5,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	$rootScope.appLoaded=false;
 	$rootScope.error='';
 	//$rootScope.sellerID='';
-    dataSVC.getCategories(function(d){
-		
-		$rootScope.categories=d.data;
-	});
+    
 	$rootScope.pageTitle='Kitbucket';
 	$rootScope.backLink='#menu';
 	$rootScope.backImage='glyphicon-menu-hamburger';
@@ -60,7 +57,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 			$rootScope.cart.items.splice(index,1);
 		}
 	}
-	$scope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) {
+	$rootScope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) {
 		
         var modalInstance = $modal.open({
             windowClass: windowClass,
@@ -82,14 +79,15 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
         });
     };
 	$rootScope.$storage = $localStorage.$default({
-          sellerID: ''
+          seller: null
     });
-	if($rootScope.$storage.sellerID==''){
-		$scope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
+	if($rootScope.$storage.seller==null){
+		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
 			$rootScope.appLoaded=true;
 		});
 	}
 	else{
 		$rootScope.appLoaded=true;
 	}
+	
 }]);

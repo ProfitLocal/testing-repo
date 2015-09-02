@@ -1,38 +1,17 @@
 
-    <div class="page_header">
+<div class="page_header">
       <div class="container-fluid">
         <div class="icon pull-left"><a href="{{$root.backLink}}"><i class="glyphicon" ng-class="$root.backImage"></i></a></div>
         <div class="header_btns pull-right"><a class="btn "><i class="glyphicon glyphicon-filter"></i></a> <a class="filter btn "><i class="glyphicon glyphicon-search"></i></a></div>
         <div class="title">{{$root.pageTitle}}</div>
       </div>
-    </div>
-	 <div ui-view ></div>
-	<div class="cart_footer" ng-if="$root.cart.items.length>0">
+</div>
+<div ui-view ></div>
+<div class="cart_footer" ng-if="$root.cart.items.length>0">
   <div class="cart_price clearfix">
     <div class="icon"><span class="fa fa-cart-arrow-down"></span> </div>
     <a class="order btn btn-sm btn-darkGreen">Order</a>
     <div class="cart_total">{{$root.cart.itemCount}} Items into Cart <strong class="pull-right">Rs. {{$root.cart.total}} </strong></div>
   </div>
-  <!-- shopping cart itesm 
-  <ul class="cat_list">
-    <li class="">
-      <div class="cat_item clearfix">
-        <div class="imageWrap"><a href="#"><img src="assets/img/products/pro1.jpg" alt=""></a></div>
-        <div class="actions clearfix">
-          <div class="cart">
-            <div class="btn-group">
-              <div class="btn btn-default"><i class="fa fa-heart-o"></i></div>
-              <div class="btn btn-default"><i class="fa fa-close"></i></div>
-            </div>
-          </div>
-        </div>
-        <div class="productDetail">
-          <h5 class="productName">Almond hair oil</h5>
-          <h5 class="quantity">500ml</h5>
-          <h5 class="price"><span class="newPrice">Rs. 90</span></h5>
-        </div>
-      </div>
-    </li>
-  </ul>-->
 </div>
-	<div sidebar-menu><div>
+<div ng-show="$root.appLoaded" sidebar-menu><div>

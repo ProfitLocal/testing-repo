@@ -2,6 +2,7 @@
     <nav id="menu" >
       <ul>
         <li><a href="#">Home</a></li>
+		<li><a href="javascript:void(0)" ng-click="$root.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',null,null)">{{$root.$storage.seller.SellerShopeName}}</a></li>
 		<li ng-repeat="c in $root.categories"><a ui-sref="app.cat({catID:c.CategoryId})">{{c.CategoryName}}</a>
 			<ul ng-if="c.Child.length>0">
 				<li ng-repeat="c1 in c.Child"><a ui-sref="app.cat({catID:c1.CategoryId})">{{c1.CategoryName}}</a>
