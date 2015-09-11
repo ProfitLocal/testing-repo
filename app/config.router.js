@@ -47,6 +47,7 @@ angular.module('app')
 											   'assets/css/custom.css',
 											   'app/directives/menu.js',
 											   'app/directives/swiper.js',
+											   'app/directives/mySrc.js',
                                         ]
                                     });
                                 }

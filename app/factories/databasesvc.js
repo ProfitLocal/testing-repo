@@ -1,5 +1,5 @@
 angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", function($http, $location,$rootScope) {
-		var apiurl="http://122.160.153.14:182/";
+		var apiurl="http://122.160.153.14:183/";
         function getData(callback) {
             var url = apiurl+"api/Home/GetListProducts";
             $http.post(url, {})
