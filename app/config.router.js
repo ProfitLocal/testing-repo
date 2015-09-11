@@ -48,6 +48,7 @@ angular.module('app')
 											   'app/directives/menu.js',
 											   'app/directives/swiper.js',
 											   'app/directives/mySrc.js',
+											   'app/directives/scrollMenu.js',
                                         ]
                                     });
                                 }

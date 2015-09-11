@@ -21,6 +21,7 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 		]
 	}*/
 	$scope.products=[];
+	$scope.activec=-1;
 	$scope.loadProduct=function(catid){
 		$scope.products=[];
 		dataSVC.getCategoryProduct(catid,$rootScope.$storage.seller.SellerID,0,20,function(result){
@@ -47,6 +48,7 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 					}
 				}
 				$scope.category.Child[index].IsActive=true;
+				$scope.activec=index;
 				$scope.loadProduct($scope.category.Child[index].CategoryId);
 			}
 		});
@@ -61,6 +63,12 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 			}
 		}
 		obj.IsActive=true;
+		$scope.activec=catIndex;
+		 var mySwiper = new Swiper ('.swiper-container', {
+		// Optional parameters
+		slidesPerView: 3,
+		spaceBetween: 0
+    })    
 		$scope.loadProduct(obj.CategoryId);
 	}
 	 var styles = {
@@ -69,7 +77,9 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
     // appear from left
     left: '.enter-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all; -webkit-transform:translate3d(-100%,0,0)}  .enter-setup.enter-start {   position:absolute;   -webkit-transform:translate3d(0,0,0) }  .leave-setup {   position:absolute;   -webkit-t.animate-enter,.animate-leave{ -webkit-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;-moz-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;-ms-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all; -o-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all; transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;} .animate-enter {left: 100%;}.animate-enter.animate-enter-active {left: 0;}.animate-leave {left: 0;}ransition: 0.5s ease-out all;  -webkit-transform:translate3d(0,0,0)} .leave-setup.leave-start {   position:absolute;  -webkit-transform:translate3d(100%,0,0) };'
   };
+  $scope.style='left';
 	$scope.goToPage=function(side){
+		$scope.style=side;
 		 $rootScope.style = styles[side];
 		if(side=='right'){
 			if(catIndex>0){
