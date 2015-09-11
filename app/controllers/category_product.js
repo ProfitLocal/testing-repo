@@ -1,5 +1,5 @@
 
-app.controller('category_productController', function($scope,$rootScope,dataSVC,$stateParams,$filter) {
+app.controller('category_productController', function($scope,$rootScope,dataSVC,$stateParams,$filter,$window) {
 	$rootScope.pageTitle='Back';
 	$rootScope.backLink='#/app/home';
 	$rootScope.backImage='glyphicon-menu-left';
@@ -21,7 +21,7 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 		]
 	}*/
 	$scope.products=[];
-	$scope.activec=-1;
+	$scope.activec=0;
 	$scope.loadProduct=function(catid){
 		$scope.products=[];
 		dataSVC.getCategoryProduct(catid,$rootScope.$storage.seller.SellerID,0,20,function(result){
@@ -95,4 +95,82 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 		}
 	} 
 	$rootScope.style = styles['right'];
+	
+        $scope.index = 0;
+        $scope.marginLeft = 0;
+        $scope.isRequired = true;
+        $scope.initialize = function(flag) {
+            var w = $('.sub_cat').innerWidth();
+            var mw = 0
+            $('.sub_cat li').each(function() {
+                mw += $(this).innerWidth();
+            });
+
+            /* var bw = $('.content-header-buttons').innerWidth();
+           if (((bw + mw) - (flag == 2 ? $scope.marginLeft : 0)) > w) {
+                $scope.isRequired = true;
+            } else {
+                /*$scope.index=0;
+                $scope.marginLeft=0;
+                $scope.isRequired = false;
+            }*/
+        };
+        $scope.initialize();
+        angular.element($window).bind('resize', function() {
+            $('.sub_cat ul').css('margin-left', "0" + "px");
+            return $scope.$apply();
+        });
+        $scope.leftClick = function() {
+			console.log('l')
+            $scope.initialize(1)
+            if ($scope.isRequired) {
+                if ($scope.index > 0) {
+                    var w = $('.sub_cat ul li:eq(' + ($scope.index - 1) + ')').innerWidth();
+                    $scope.marginLeft = $scope.marginLeft - w;
+                    $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");
+                    $scope.index = $scope.index - 1;
+					console.log('l')
+                }
+            }
+        }
+        $scope.rightClick = function() {
+			console.log('r')
+            $scope.initialize(2)
+            if ($scope.isRequired) {
+                if ($scope.index < $('.sub_cat ul li').size() - 1) {
+                    var w = $('.sub_cat ul li:eq(' + ($scope.index) + ')').innerWidth();
+                    $scope.marginLeft = $scope.marginLeft + w;
+                    $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");
+                    $scope.index = $scope.index + 1;
+                }
+            }
+        }
+		$scope.$watch('activec',function(){
+			console.log($scope.activec)
+			 $scope.index =$scope.activec;
+			if($scope.activec>0){
+				javascript:void(0)
+					var w=0;
+					for(var i=0;i<$scope.activec;i++)
+					{
+						w += $('.sub_cat ul li:eq(' + (i) + ')').innerWidth();
+					}
+                    $scope.marginLeft = w;
+                    $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");
+				
+					var w=0;
+					for(var i=0;i<$scope.activec;i++)
+					{
+						w += $('.sub_cat ul li:eq(' + (i) + ')').innerWidth();
+					}
+                    $scope.marginLeft = w;
+                    $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");		
+				}
+			
+			else{		
+ $scope.marginLeft=0;			
+                $('.sub_cat ul').css('margin-left', "0px");
+               
+			}
+		});
 });

@@ -16,8 +16,8 @@
       <div class="cat_title">
         <h4>{{category.CategoryName}}</h4>
       </div>
-      <!-- sub-category -->
-      <div class="sub_cat" scroll-menu ng-swipe-right="leftClick()" ng-swipe-left="rightClick()" side="style" aindex="activec">
+      <!-- sub-category   -->
+      <div class="sub_cat" ng-swipe-right="leftClick()" ng-swipe-left="rightClick()" >
         <ul class="">
           <li ng-class="{'active':c.IsActive}" ng-repeat="c in category.Child"><a href="javascript:void(0)" ng-click="setCategory(c)">{{c.CategoryName}}</a></li>
         </ul>
