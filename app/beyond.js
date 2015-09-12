@@ -103,5 +103,5 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 		alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 		
-	},o)
+	},null)
 }]);
