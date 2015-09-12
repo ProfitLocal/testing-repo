@@ -56,7 +56,7 @@ angular.module('app')
                     })
 
                     .state('location', {
-                        url: '/login',
+                        url: '/location',
                         templateUrl: 'views/location.html',
                         ncyBreadcrumb: {
                             label: 'location'
