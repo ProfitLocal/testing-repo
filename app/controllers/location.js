@@ -2,6 +2,7 @@
 app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeolocationService) {
 	$scope.isLoading=false;
 	if(cordovaGeolocationService.checkGeolocationAvailability()){
+		alert('a')
 		$scope.isLoading=true;
 		cordovaGeolocationService.getCurrentPosition(function(position){
 			 alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -21,6 +22,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 	}
 	else
 	{
+		alert('na')
 		cordova.plugins.diagnostic.switchToLocationSettings();
 	}
 });
