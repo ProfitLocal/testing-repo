@@ -27,7 +27,7 @@ angular.module('app')
             function ($stateProvider, $urlRouterProvider) {
 
                 $urlRouterProvider
-                    .otherwise('/app/home');
+                    .otherwise('/location');
                 $stateProvider
                     .state('app', {
                         abstract: true,
@@ -55,6 +55,26 @@ angular.module('app')
                         }
                     })
 
+                    .state('location', {
+                        url: '/login',
+                        templateUrl: 'views/location.html',
+                        ncyBreadcrumb: {
+                            label: 'location'
+                        },
+                        resolve: {
+                            deps: [
+                                '$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        serie: true,
+                                        files: [
+                                            'app/controllers/location.js'                                           
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    })
                 .state('app.home', {
                     url: '/home',
                     templateUrl: 'views/home.html',
