@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$modal', function($scope,$rootScope, dataSVC, $localStorage,$modal) {
+app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$modal','cordovaGeolocationService', function($scope,$rootScope, dataSVC, $localStorage,$modal,cordovaGeolocationService) {
 	$rootScope.categories=[];
 	$rootScope.appLoaded=false;
 	$rootScope.error='';
@@ -81,13 +81,27 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	$rootScope.$storage = $localStorage.$default({
           seller: null
     });
-	if($rootScope.$storage.seller==null){
+	/*if($rootScope.$storage.seller==null){
 		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
 			$rootScope.appLoaded=true;
 		});
 	}
 	else{
 		$rootScope.appLoaded=true;
-	}
-	
+	}*/
+	cordovaGeolocationService.getCurrentPosition(function(position){
+		 alert('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + position.timestamp                + '\n');
+		
+	},function(error){
+		alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+		
+	},o)
 }]);

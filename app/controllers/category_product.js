@@ -121,25 +121,31 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
             return $scope.$apply();
         });
         $scope.leftClick = function() {
-			console.log('l')
+			console.log($scope.index+ 'l')
             $scope.initialize(1)
             if ($scope.isRequired) {
                 if ($scope.index > 0) {
                     var w = $('.sub_cat ul li:eq(' + ($scope.index - 1) + ')').innerWidth();
-                    $scope.marginLeft = $scope.marginLeft - w;
+                    $scope.marginLeft = $scope.marginLeft - w-10;
                     $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");
                     $scope.index = $scope.index - 1;
 					console.log('l')
                 }
+				else{		
+					$scope.marginLeft=0;			
+					$('.sub_cat ul').css('margin-left', "0px");
+				   
+				}
             }
+			
         }
         $scope.rightClick = function() {
-			console.log('r')
+			console.log($scope.index+ 'r')
             $scope.initialize(2)
             if ($scope.isRequired) {
                 if ($scope.index < $('.sub_cat ul li').size() - 1) {
                     var w = $('.sub_cat ul li:eq(' + ($scope.index) + ')').innerWidth();
-                    $scope.marginLeft = $scope.marginLeft + w;
+                    $scope.marginLeft = $scope.marginLeft + w+10;
                     $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");
                     $scope.index = $scope.index + 1;
                 }
@@ -149,26 +155,17 @@ app.controller('category_productController', function($scope,$rootScope,dataSVC,
 			console.log($scope.activec)
 			 $scope.index =$scope.activec;
 			if($scope.activec>0){
-				javascript:void(0)
 					var w=0;
 					for(var i=0;i<$scope.activec;i++)
 					{
 						w += $('.sub_cat ul li:eq(' + (i) + ')').innerWidth();
 					}
-                    $scope.marginLeft = w;
-                    $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");
-				
-					var w=0;
-					for(var i=0;i<$scope.activec;i++)
-					{
-						w += $('.sub_cat ul li:eq(' + (i) + ')').innerWidth();
-					}
-                    $scope.marginLeft = w;
+                    $scope.marginLeft = w+10;
                     $('.sub_cat ul').css('margin-left', "-" + $scope.marginLeft + "px");		
 				}
 			
 			else{		
- $scope.marginLeft=0;			
+				$scope.marginLeft=0;			
                 $('.sub_cat ul').css('margin-left', "0px");
                
 			}
