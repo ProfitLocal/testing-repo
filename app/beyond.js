@@ -91,4 +91,5 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 		$rootScope.appLoaded=true;
 	}*/
 	
+	$rootScope.appLoaded=true;
 }]);
