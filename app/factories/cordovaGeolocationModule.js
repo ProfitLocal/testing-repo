@@ -69,7 +69,7 @@ cordovaGeolocationModule.factory('cordovaGeolocationService', ['$rootScope', '$l
                 function (error) {
                     $rootScope.$apply(errorCallback(error));
                 },
-                {enableHighAccuracy:false,maximumAge:Infinity, timeout:5000}
+                {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000}
             );
         },
 

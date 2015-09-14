@@ -21,6 +21,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 					alert('code: '    + error.code    + '\n' +
 					  'message: ' + error.message + '\n');
 					
+			cordova.plugins.diagnostic.switchToLocationSettings();
 				},null);
 		}
 		else
@@ -32,4 +33,8 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 			//alert('na2')
 	//	cordova.plugins.diagnostic.switchToLocationSettings();
 	//});
+	$scope.openSetting=function(){
+		
+			cordova.plugins.diagnostic.switchToLocationSettings();
+	}
 });
