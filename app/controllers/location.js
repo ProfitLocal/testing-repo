@@ -1,10 +1,10 @@
 
 app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeolocationService) {
-	$scope.isLoading=false;	
+	$scope.isLoading=true;	
 	
-	cordova.plugins.diagnostic.isLocationEnabled(function(enabled){//only android
-		alert(enabled)
-		$scope.isLoading=!enabled;
+	//cordova.plugins.diagnostic.isLocationEnabled(function(enabled){//only android
+	//	alert(enabled)
+		//$scope.isLoading=!enabled;
 			if(cordovaGeolocationService.checkGeolocationAvailability()){				
 				
 				var w=cordovaGeolocationService.watchPosition(function(position){
@@ -28,10 +28,10 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 		{
 			cordova.plugins.diagnostic.switchToLocationSettings();
 		}
-	}, function(error){
+	//}, function(error){
 			//alert('na2')
-		cordova.plugins.diagnostic.switchToLocationSettings();
-	});
+	//	cordova.plugins.diagnostic.switchToLocationSettings();
+	//});
 	$scope.openSetting=function(){
 		
 			cordova.plugins.diagnostic.switchToLocationSettings();
