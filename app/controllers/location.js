@@ -1,7 +1,7 @@
 
 app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeolocationService) {
 	$scope.isLoading=false;
-	cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+	cordova.plugins.diagnostic.isLocationEnabledSetting(function(enabled){
 			if(cordovaGeolocationService.checkGeolocationAvailability()){
 				alert('a')
 				$scope.isLoading=true;
