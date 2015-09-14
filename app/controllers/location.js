@@ -28,7 +28,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 		{
 			cordova.plugins.diagnostic.switchToLocationSettings();
 		}
-		document.addEventListener("online", function() {
+		document.addEventListener("resume", function() {
 			alert('a');
 		});
 	//}, function(error){
