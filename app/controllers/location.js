@@ -7,7 +7,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 		//$scope.isLoading=!enabled;
 			if(cordovaGeolocationService.checkGeolocationAvailability()){				
 				
-				var w=cordovaGeolocationService.watchPosition(function(position){
+				var w=cordovaGeolocationService.getCurrentPosition(function(position){
 					 alert('Latitude: '          + position.coords.latitude          + '\n' +
 					  'Longitude: '         + position.coords.longitude         + '\n' +
 					  'Altitude: '          + position.coords.altitude          + '\n' +
@@ -28,6 +28,9 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 		{
 			cordova.plugins.diagnostic.switchToLocationSettings();
 		}
+		document.addEventListener("online", function() {
+			alert('a');
+		});
 	//}, function(error){
 			//alert('na2')
 	//	cordova.plugins.diagnostic.switchToLocationSettings();
