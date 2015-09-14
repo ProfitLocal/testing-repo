@@ -3,6 +3,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 	$scope.isLoading=false;	
 	
 	
+	alert('p')
 function onDeviceReady() {
 	alert('s')
 	cordova.plugins.diagnostic.isLocationEnabled(function(enabled){//only android
@@ -37,4 +38,5 @@ function onDeviceReady() {
 	});
 }
 $(document).on("deviceready", onDeviceReady);
+	alert('p1')
 });
