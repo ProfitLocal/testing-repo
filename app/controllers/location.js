@@ -34,7 +34,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 	//	cordova.plugins.diagnostic.switchToLocationSettings();
 	//});
 	$scope.openSetting=function(){
-		
+		alert(cordova)
 			cordova.plugins.diagnostic.switchToLocationSettings();
 	}
 });
