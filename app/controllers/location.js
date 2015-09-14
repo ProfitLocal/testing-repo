@@ -6,7 +6,7 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 		
 			cordova.plugins.diagnostic.switchToLocationSettings();
 	}
-	function checkConnection=function(){
+	function checkConnection(){
 		
 		cordova.plugins.diagnostic.isLocationEnabled(function(enabled){//only android			
 			$scope.isLoading=!enabled;
