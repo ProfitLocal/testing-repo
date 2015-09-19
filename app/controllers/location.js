@@ -35,25 +35,34 @@ app.controller('locationCtrl', function($scope,$rootScope,dataSVC,cordovaGeoloca
 		});
 	}
 	document.addEventListener("deviceready", function() {
-	/*	alert('Device Name: '     + device.name     + '<br />' + 
-                            'Device Cordova: '  + device.cordova + '<br />' + 
-                            'Device Platform: ' + device.platform + '<br />' + 
-                            'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Model: '    + device.model     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />');*/
-							 var networkState = navigator.connection.type;
+		/*	alert('Device Name: '     + device.name     + '<br />' + 
+								'Device Cordova: '  + device.cordova + '<br />' + 
+								'Device Platform: ' + device.platform + '<br />' + 
+								'Device UUID: '     + device.uuid     + '<br />' + 
+								'Device Model: '    + device.model     + '<br />' + 
+								'Device Version: '  + device.version  + '<br />');*/
+		/* var networkState = navigator.connection.type;
 
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
+	   var states = {};
+		states[Connection.UNKNOWN]  = 'Unknown connection';
+		states[Connection.ETHERNET] = 'Ethernet connection';
+		states[Connection.WIFI]     = 'WiFi connection';
+		states[Connection.CELL_2G]  = 'Cell 2G connection';
+		states[Connection.CELL_3G]  = 'Cell 3G connection';
+		states[Connection.CELL_4G]  = 'Cell 4G connection';
+		states[Connection.CELL]     = 'Cell generic connection';
+		states[Connection.NONE]     = 'No network connection';
 
-    alert('Connection type: ' + states[networkState]);
+		alert('Connection type: ' + states[networkState]);*/
+		var db = window.sqlitePlugin.openDatabase({name: "DB"});
+		db.transaction(function(tx) {
+            tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
+              console.log("res.rows.length: " + res.rows.length + " -- should be 1");
+              console.log("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+            }, function(e) {
+          alert("ERROR: " + e.message);
+        });
+		});
 		checkConnection();
 		document.addEventListener("resume", function() {
 			checkConnection();
