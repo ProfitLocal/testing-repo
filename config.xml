@@ -25,7 +25,9 @@
     <preference name="webviewbounce"    value="true" />
     <preference name="stay-in-webview" value="true" />
 	<preference name="prerendered-icon" value="false"/>
-
+<preference name="SplashScreen" value="assets/splash/welcome.png"  />
+<preference name="SplashScreenDelay" value="10000" />
+<preference name="SplashScreenBackgroundColor" value="green" /> 
     <icon src="assets/icons/apple-icon.png" />
     <icon src="assets/icons/android-icon-72x72.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="assets/icons/android-icon-96x96.png"   gap:platform="android"    gap:density="mdpi" />
