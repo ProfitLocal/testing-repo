@@ -89,7 +89,26 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	}
 	else{
 		$rootScope.appLoaded=true;
-	}*/
+	}*/	
 	
-	$rootScope.appLoaded=true;
+	$scope.loadDb=function(){
+		var db = window.sqlitePlugin.openDatabase({name: "DB"});
+		db.transaction(function(tx) {
+			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
+			tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
+          alert("insertId: " + res.insertId + " -- probably 1");
+          alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
+              alert("res.rows.length: " + res.rows.length + " -- should be 1");
+              alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+            }, function(e) {
+				alert("ERROR: " + e.message);
+			});
+			}, function(e) {
+				alert("ERROR: " + e.message);
+			});
+			$rootScope.appLoaded=true;
+		});
+	}
+	$scope.loadDb();
 }]);
