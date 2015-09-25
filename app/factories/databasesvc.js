@@ -97,10 +97,10 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                                             $rootScope.appLoaded=false;
                 });
         }
-        function getUser(callback){
+        function getUser(deviceid,Platform,GCMRegistrationKey,callback){
             //var randomnumber = Math.floor((Math.random()*6)+1);
             var url = apiurl+"api/Home/SetupUser";
-                    $http.post(url, {deviceid:"123459",Platform:"Android",GCMRegistrationKey:""})
+                    $http.post(url, {deviceid:deviceid,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
                     .success(function(result) {
                         callback(result);
                     })

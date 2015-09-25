@@ -37,16 +37,29 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 
         });
     };
-	console.log($rootScope.$storage.seller);
-	if($rootScope.$storage.seller==null){
-		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
-			$rootScope.appLoaded=true;
-		});
-	}
-	else{
-		$rootScope.appLoaded=true;
-	}
-        dataSVC.getUser(function(d){
+	
+	
+	document.addEventListener("deviceready", function() {
+		/*	alert('Device Name: '     + device.name     + '<br />' + 
+								'Device Cordova: '  + device.cordova + '<br />' + 
+								'Device Platform: ' + device.platform + '<br />' + 
+								'Device UUID: '     + device.uuid     + '<br />' + 
+								'Device Model: '    + device.model     + '<br />' + 
+								'Device Version: '  + device.version  + '<br />');*/
+		/* var networkState = navigator.connection.type;
+
+	   var states = {};
+		states[Connection.UNKNOWN]  = 'Unknown connection';
+		states[Connection.ETHERNET] = 'Ethernet connection';
+		states[Connection.WIFI]     = 'WiFi connection';
+		states[Connection.CELL_2G]  = 'Cell 2G connection';
+		states[Connection.CELL_3G]  = 'Cell 3G connection';
+		states[Connection.CELL_4G]  = 'Cell 4G connection';
+		states[Connection.CELL]     = 'Cell generic connection';
+		states[Connection.NONE]     = 'No network connection';
+
+		alert('Connection type: ' + states[networkState]);*/
+		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
             
 //            console.log(d);
@@ -62,10 +75,21 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                                 items:[]
                         };
                     }
+					console.log($rootScope.$storage.seller);
+	if($rootScope.$storage.seller==null){
+		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
+			$rootScope.appLoaded=true;
+		});
+	}
+	else{
+		$rootScope.appLoaded=true;
+	}
                 })
             }
             
         })
+	});
+       
         
        
 	$rootScope.addToCart=function(obj){
@@ -114,10 +138,6 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                                         {
                                                 $rootScope.cart.items[i].Qnt=$rootScope.cart.items[i].Qnt-1;
                                                 obj.Qnt=$rootScope.cart.items[i].Qnt;
-//                                                $rootScope.cart.total=$rootScope.cart.total-(parseFloat(obj.OfferPrice)*$rootScope.cart.items[i].Qnt);
-//                                                $rootScope.cart.itemCount=$rootScope.cart.itemCount-$rootScope.cart.items[i].Qnt;
-//                                                $rootScope.cart.items[i].Qnt=0
-//                                                obj.Qnt=$rootScope.cart.items[i].Qnt;
                                                 if(obj.Qnt==0){
                                                     index=i;
                                                 }
@@ -135,66 +155,6 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
             });
         }
 	}
-//        $rootScope.addToCartPoduct=function(obj){
-//            var IsPackage = false;
-//            dataSVC.addToCart(obj,IsPackage,function(d){
-//                console.log(d);
-//                console.log(d.data.TempOrderID);
-//                if(d.status == true){
-//                    $rootScope.$storage.orderId =d.data.TempOrderID;
-//                    var	 isFound=false;
-//                    for(var i=0;i<$rootScope.cart.items.length;i++)
-//                    {
-//                            if($rootScope.cart.items[i].SellerProductID==obj.ProductID)
-//                            {
-//                                    isFound=true;
-//                                    $rootScope.cart.items[i].Qnt=$rootScope.cart.items[i].Qnt+1;
-//                                    obj.Qnt=$rootScope.cart.items[i].Qnt;
-//                                    break;
-//                            }
-//                    }
-//                    if(isFound==false){
-//                            $rootScope.cart.items.push({SellerProductID:obj.ProductID,ProductName:obj.ProductName,ProductImage:obj.ProductImage,OfferPrice:obj.OfferPrice,SellPrice:obj.SellPrice,Qnt:1});
-//                            obj.Qnt=1;
-//                    }
-//                    $rootScope.cart.total=$rootScope.cart.total+parseFloat(obj.OfferPrice);
-//                    $rootScope.cart.itemCount=$rootScope.cart.itemCount+1;
-//                }
-//                
-//            })
-//        }
-//        $rootScope.removeFromCartProduct=function(obj){
-//		var	index=-1;
-//                var IsPackage = false;
-//                dataSVC.removeFromCart(obj,IsPackage,function(d){
-//                    console.log(d);
-//                    if(d.status == true){
-//                        if(obj.Qnt!=undefined&&obj.Qnt>0){
-//                                for(var i=0;i<$rootScope.cart.items.length;i++)
-//                                {
-//                                        if($rootScope.cart.items[i].SellerProductID==obj.ProductID)
-//                                        {
-//                                                $rootScope.cart.total=$rootScope.cart.total-(parseFloat(obj.OfferPrice)*$rootScope.cart.items[i].Qnt);
-//                                                $rootScope.cart.itemCount=$rootScope.cart.itemCount-$rootScope.cart.items[i].Qnt;
-//                                                $rootScope.cart.items[i].Qnt=0
-//                                                obj.Qnt=$rootScope.cart.items[i].Qnt;
-//                                                if(obj.Qnt==0){
-//
-//                                                index=i;
-//                                                }
-//                                                
-//                                                break;
-//                                        }
-//                                }
-//                        }
-//                        if(index!=-1){
-//
-//                                $rootScope.cart.items.splice(index,1);
-//                        }
-//                        console.log($rootScope.cart);
-//                }
-//            });
-//	}
 		
 	//$rootScope.appLoaded=true;
 	$scope.loadDb=function(){
