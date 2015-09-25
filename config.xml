@@ -13,7 +13,6 @@
         Sumedha Softech
     </author>
 	<access origin="*" />
-	<gap:plugin name="com.millerjames01.sqlite-plugin" version="1.0.1" />
 	<gap:plugin name="fi.avaus.cordova.geolocation" />
 	<gap:plugin name="cordova.plugins.diagnostic" source="plugins.cordova.io" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin"  />

@@ -157,7 +157,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	}
 		
 	//$rootScope.appLoaded=true;
-	$scope.loadDb=function(){
+	/*$scope.loadDb=function(){
 		var db = window.sqlitePlugin.openDatabase({name: "DB"});
 		db.transaction(function(tx) {
 			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
@@ -175,7 +175,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 			});
 			
 		});
-	}
+	}*/
 	//$scope.loadDb();
         
 }]);
