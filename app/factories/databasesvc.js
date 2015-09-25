@@ -98,13 +98,19 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                 });
         }
         function getUser(deviceid,Platform,GCMRegistrationKey,callback){
-            alert(deviceid)
+           
             var url = apiurl+"api/Home/SetupUser";
                     $http.post(url, {deviceid:deviceid,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
                     .success(function(result) {
                         callback(result);
                     })
                     .error(function(e, r, s,t,h) {	
+					 alert(e)
+					 alert(r);
+					 alert(s)
+					 alert(t)
+					 alert(s)
+					 alert(h)
 						$rootScope.error='No internet connection available';
 						$rootScope.appLoaded=false;
                     });
