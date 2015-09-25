@@ -40,12 +40,12 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	
 	
 	document.addEventListener("deviceready", function() {
-		/*	alert('Device Name: '     + device.name     + '<br />' + 
+		alert('Device Name: '     + device.name     + '<br />' + 
 								'Device Cordova: '  + device.cordova + '<br />' + 
 								'Device Platform: ' + device.platform + '<br />' + 
 								'Device UUID: '     + device.uuid     + '<br />' + 
 								'Device Model: '    + device.model     + '<br />' + 
-								'Device Version: '  + device.version  + '<br />');*/
+								'Device Version: '  + device.version  + '<br />');
 		/* var networkState = navigator.connection.type;
 
 	   var states = {};
@@ -61,7 +61,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 		alert('Connection type: ' + states[networkState]);*/
 		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
-            
+            alert(d.status)
 //            console.log(d);
             if(d.status == true){
                 dataSVC.getProductOfCartByUserId(function(d){
