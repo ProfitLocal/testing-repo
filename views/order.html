@@ -1,0 +1,35 @@
+<div class="swiper" ng-controller="orderController">
+    <div id="banner" class="image_slider swiper-container">
+      <div class="slider_content_list swiper-wrapper">
+        <div class="swiper-slide"> <img class="" src="assets/img/slider/img1.jpg" alt="" /> </div>
+        <div class="swiper-slide"><img class="" src="assets/img/slider/img1.jpg" alt="" /> </div>
+        <div class="swiper-slide"><img class="" src="assets/img/slider/img1.jpg" alt="" /> </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="dealsDay">
+      <div class="title_header">
+        <div class="pull-right timer"><a class="order btn btn-sm btn-darkGreen" href="{{checkOutLink}}">Checkout</a></div>
+        <div class="title">Cart Items</div>
+      </div>
+      <div class="swiper-container">
+        <div id="deals" class="product_scroller swiper-wrapper" ng-if="$root.cart.items.length>0">
+            <div ng-repeat="item in $root.cart.items" style="width:100%">
+                <div class="pull-left"><img src="{{item.ProductImage}}"/></div>
+                <div>{{item.ProductName}}</div>
+                <div class="text-center">Quantity : {{item.Qnt}}</div>
+                <div class="pull-right">Price: {{item.OfferPrice}}</div>
+            </div>
+        </div>
+          <div id="deals" class="product_scroller swiper-wrapper" ng-if="$root.cart.items.length==0">
+              No product in the cart
+          </div>
+      </div>
+      <div class="title_header"  ng-if="$root.cart.items.length>0">
+        <div class="pull-right timer">{{$root.cart.total}}</div>
+        <div class="title">Total</div>
+      </div>
+    </div>
+    
+</div>

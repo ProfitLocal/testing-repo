@@ -57,10 +57,10 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
            
         }
 		function getSeller(pin,callback) {
-            var url = apiurl+"api/Home/GetSellerListByPinCode";
+            var url = apiurl+"api/Home/GetSellerByAreaId";
            
                // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
-                $http.post(url, {PinCode:pin})
+                $http.post(url, {AreaID:pin})
                     .success(function(result) {
                         callback(result);
                     })
@@ -70,11 +70,163 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                     });
            
         }
+        function getFeaturedProduct(sellerID,callback){
+            var url = apiurl+"api/Home/GetFeaturedProduct";
+           
+               // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
+            $http.post(url, {sellerid:sellerID})
+                .success(function(result) {
+                    console.log(result);
+                    callback(result);
+                })
+                .error(function(e, r, s) {
+                                            $rootScope.error='No internet connection available';
+                                            $rootScope.appLoaded=false;
+                });
+        }
+        function getPackageProduct(sellerID,callback){
+            var url = apiurl+"api/Home/GetPackageByUserID";
+           
+               // $http.defaults.headers.common.Authorization = 'Bearer ' + acToken.accessToken;
+            $http.post(url, {sellerid:sellerID})
+                .success(function(result) {
+                    callback(result);
+                })
+                .error(function(e, r, s) {
+                                            $rootScope.error='No internet connection available';
+                                            $rootScope.appLoaded=false;
+                });
+        }
+        function getUser(callback){
+            //var randomnumber = Math.floor((Math.random()*6)+1);
+            var url = apiurl+"api/Home/SetupUser";
+                    $http.post(url, {deviceid:"123459",Platform:"Android",GCMRegistrationKey:""})
+                    .success(function(result) {
+                        callback(result);
+                    })
+                    .error(function(e, r, s,t,h) {	
+						$rootScope.error='No internet connection available';
+						$rootScope.appLoaded=false;
+                    });
+        }
+        function addToCart(p,IsPackage,callback){
+//            console.log(p);
+            if($rootScope.$storage.orderId == null){
+                var orderId = 0;
+            }else{
+                var orderId = $rootScope.$storage.orderId;
+            }
+            var url = apiurl+"api/Home/AddToCart";
+                    $http.post(url, {SellerProductID:p.SellerProductID,Quantity:1,SellerId:$rootScope.$storage.seller.SellerID,IsPackage:IsPackage,UserId:$rootScope.$storage.user.TempUserId,TempOrderID:orderId})
+                    .success(function(result) {
+                        callback(result);
+                    })
+                    .error(function(e, r, s,t,h) {	
+						$rootScope.error='No internet connection available';
+						$rootScope.appLoaded=false;
+                    });
+        }
+        function removeFromCart(p,IsPackage,callback){
+//           console.log(p);
+            if($rootScope.$storage.orderId == null){
+                var orderId = 0;
+            }else{
+                var orderId = $rootScope.$storage.orderId;
+            }
+            
+                    if(p.Qnt > 1){
+                        var url = apiurl+"api/Home/UpdateProductFromcart";
+                        $http.post(url, {SellerProductID:p.SellerProductID,quantity:1,IsPackage:IsPackage,TempOrderID:orderId})
+                        .success(function(result) {
+                            callback(result);
+                        })
+                        .error(function(e, r, s,t,h) {	
+                                                    $rootScope.error='No internet connection available';
+                                                    $rootScope.appLoaded=false;
+                        }); 
+                    }else{
+                        var url = apiurl+"api/Home/RemoveProductFromeCart";
+                        $http.post(url, {SellerProductID:p.SellerProductID,IsPackage:IsPackage,TempOrderID:orderId})
+                        .success(function(result) {
+                            callback(result);
+                        })
+                        .error(function(e, r, s,t,h) {	
+                                                    $rootScope.error='No internet connection available';
+                                                    $rootScope.appLoaded=false;
+                        }); 
+                    }
+                    
+        }
+        function updateArea(areaId,callback){
+           var url = apiurl+"api/Home/UpdateArea";
+            $http.post(url, {AreaId:areaId,Userid:$rootScope.$storage.user.TempUserId})
+            .success(function(result) {
+                callback(result);
+            })
+            .error(function(e, r, s,t,h) {	
+                                        $rootScope.error='No internet connection available';
+                                        $rootScope.appLoaded=false;
+            });  
+        }
+        function updateSeller(sellerId,callback){
+           var url = apiurl+"api/Home/UpdateSeller";
+            $http.post(url, {sellerId:sellerId,Userid:$rootScope.$storage.user.TempUserId})
+            .success(function(result) {
+                callback(result);
+            })
+            .error(function(e, r, s,t,h) {	
+                                        $rootScope.error='No internet connection available';
+                                        $rootScope.appLoaded=false;
+            });  
+        }
+        function getProductOfCartByUserId(callback){
+            var url = apiurl+"api/Home/GetProductOfCartByUserId";
+            $http.post(url, {Userid:$rootScope.$storage.user.TempUserId})
+            .success(function(result) {
+                callback(result);
+            })
+            .error(function(e, r, s,t,h) {	
+                                        $rootScope.error='No internet connection available';
+                                        $rootScope.appLoaded=false;
+            });   
+        }
+        function updateMobile(phone,callback){
+             var url = apiurl+"api/Home/UpdateMobile";
+            $http.post(url, {UserID:$rootScope.$storage.user.TempUserId,UserName:phone,Deviceid:"123459",Platform:"Android",GCMRegistrationKey:""})
+            .success(function(result) {
+                callback(result);
+            })
+            .error(function(e, r, s,t,h) {	
+                                        $rootScope.error='No internet connection available';
+                                        $rootScope.appLoaded=false;
+            }); 
+        }
+        function otpVerification(otp,callback){
+            var url = apiurl+"api/Home/OTPVerfication";
+            $http.post(url, {username:$rootScope.phone,otp:otp})
+            .success(function(result) {
+                callback(result);
+            })
+            .error(function(e, r, s,t,h) {	
+                                        $rootScope.error='No internet connection available';
+                                        $rootScope.appLoaded=false;
+            }); 
+        }
 		return {
 			getData:getData,
 			getCategories:getCategories,
 			getCategoryProduct:getCategoryProduct,
 			getSubCategory:getSubCategory,
-			getSeller:getSeller
+			getSeller:getSeller,
+                        getFeaturedProduct:getFeaturedProduct,
+                        getPackageProduct:getPackageProduct,
+                        getUser:getUser,
+                        addToCart:addToCart,
+                        removeFromCart:removeFromCart,
+                        updateArea:updateArea,
+                        updateSeller:updateSeller,
+                        getProductOfCartByUserId:getProductOfCartByUserId,
+                        updateMobile:updateMobile,
+                        otpVerification:otpVerification
 		}
 }]);

@@ -7,7 +7,7 @@ angular.module('app')
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
 				console.log('s');
-              $rootScope.$on("$routeChangeSuccess", function (userInfo) {
+                $rootScope.$on("$routeChangeSuccess", function (userInfo) {
                     console.log(userInfo);
                 });
 
@@ -27,7 +27,7 @@ angular.module('app')
             function ($stateProvider, $urlRouterProvider) {
 
                 $urlRouterProvider
-                    .otherwise('/location');
+                    .otherwise('/app/home');
                 $stateProvider
                     .state('app', {
                         abstract: true,
@@ -46,7 +46,9 @@ angular.module('app')
 											   'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.1.2/js/swiper.jquery.min.js',
 											   'assets/css/custom.css',
 											   'app/directives/menu.js',
-											   'app/directives/swiper.js',
+//											   'app/directives/swiper.js',
+                                                                                           'app/directives/swiper_product.js',
+                                                                                           'app/directives/swiper_package.js',
 											   'app/directives/mySrc.js',
                                         ]
                                     });
@@ -153,6 +155,46 @@ angular.module('app')
                                         serie: true,
                                         files: [
                                             'app/controllers/register.js'
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.order', {
+                        url: '/order',
+                        templateUrl: 'views/order.html',
+                        ncyBreadcrumb: {
+                            label: 'location'
+                        },
+                        resolve: {
+                            deps: [
+                                '$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        serie: true,
+                                        files: [
+                                            'app/controllers/order.js'                                           
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.checkout', {
+                        url: '/checkout',
+                        templateUrl: 'views/checkout.html',
+                        ncyBreadcrumb: {
+                            label: 'location'
+                        },
+                        resolve: {
+                            deps: [
+                                '$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        serie: true,
+                                        files: [
+                                            'app/controllers/checkout.js'                                           
                                         ]
                                     });
                                 }

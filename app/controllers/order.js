@@ -1,8 +1,9 @@
 
-app.controller('homeController', function($scope,$rootScope,dataSVC) {
+app.controller('orderController', function($scope,$rootScope,dataSVC) {
 	$rootScope.pageTitle='Kitbucket';
 	$rootScope.backLink='#menu';
 	$rootScope.backImage='glyphicon-menu-hamburger';
+        $scope.checkOutLink = "#/app/checkout";
 	$scope.$on('ngRepeatFinished', function () {
             
    //initialize swiper when document ready  
