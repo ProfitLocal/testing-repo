@@ -16,7 +16,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
             orderId:null
         });
         
-        $rootScope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) {
+        $rootScope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) { 
 		
         var modalInstance = $modal.open({
             windowClass: windowClass,
@@ -40,13 +40,13 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	
 	
 	document.addEventListener("deviceready", function() {
-		alert('Device Name: '     + device.name     + '<br />' + 
+		/*alert('Device Name: '     + device.name     + '<br />' + 
 								'Device Cordova: '  + device.cordova + '<br />' + 
 								'Device Platform: ' + device.platform + '<br />' + 
 								'Device UUID: '     + device.uuid     + '<br />' + 
 								'Device Model: '    + device.model     + '<br />' + 
 								'Device Version: '  + device.version  + '<br />');
-		/* var networkState = navigator.connection.type;
+		 var networkState = navigator.connection.type;
 
 	   var states = {};
 		states[Connection.UNKNOWN]  = 'Unknown connection';
@@ -59,6 +59,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 		states[Connection.NONE]     = 'No network connection';
 
 		alert('Connection type: ' + states[networkState]);*/
+		$scope.$apply(function () {
 		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
             alert(d.status)
@@ -87,7 +88,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                 })
             }
             
-        })
+        }) });
 	});
        
         
