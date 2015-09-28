@@ -56,6 +56,7 @@ app.controller('checkoutController', function($scope,$rootScope,dataSVC) {
                 console.log(d);
                 if(d.status== true){
                     $scope.msg = d.Message;
+                    $rootScope.$storage.user = d.data;
                 }else{
                     $scope.msg = d.Message;
                 }

@@ -11,7 +11,6 @@ var app =
                 app.service = $provide.service;
                 app.constant = $provide.constant;
                 app.value = $provide.value;
-			
             }
         ]);
 

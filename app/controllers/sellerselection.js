@@ -34,10 +34,12 @@ app.controller('SellerSelectionController', function DBController($scope, $modal
                 dataSVC.updateSeller(d.SellerID,function(response){
                     console.log(d);
                     if(response.status == true){
-                        $rootScope.$storage.seller=d;
-                        $modalInstance.close('');
+                       
+                       
                     }
                 })
+                 $rootScope.$storage.seller=d; 
+                $modalInstance.close('');
 		
 		
 	}

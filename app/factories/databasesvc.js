@@ -98,20 +98,14 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                 });
         }
         function getUser(deviceid,Platform,GCMRegistrationKey,callback){
-           
+            //var randomnumber = Math.floor((Math.random()*6)+1);
             var url = apiurl+"api/Home/SetupUser";
-			 alert(url)
-			// $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-                    $http.post(url, {deviceid:deviceid,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
+                    $http.post(url, {deviceid:"22569",Platform:"Android",GCMRegistrationKey:""})
                     .success(function(result) {
+						console.log(result)
                         callback(result);
                     })
                     .error(function(e, r, s,t,h) {	
-					 alert(e)
-					 alert(r);
-					 alert(s)
-					 alert(t)
-					 alert(h)
 						$rootScope.error='No internet connection available';
 						$rootScope.appLoaded=false;
                     });
@@ -124,7 +118,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                 var orderId = $rootScope.$storage.orderId;
             }
             var url = apiurl+"api/Home/AddToCart";
-                    $http.post(url, {SellerProductID:p.SellerProductID,Quantity:1,SellerId:$rootScope.$storage.seller.SellerID,IsPackage:IsPackage,UserId:$rootScope.$storage.user.TempUserId,TempOrderID:orderId})
+                    $http.post(url, {SellerProductID:p.SellerProductID,Quantity:1,SellerId:$rootScope.$storage.seller.SellerID,IsPackage:IsPackage,UserId:$rootScope.$storage.user.UserID,TempOrderID:orderId})
                     .success(function(result) {
                         callback(result);
                     })
@@ -166,7 +160,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         }
         function updateArea(areaId,callback){
            var url = apiurl+"api/Home/UpdateArea";
-            $http.post(url, {AreaId:areaId,Userid:$rootScope.$storage.user.TempUserId})
+            $http.post(url, {AreaId:areaId,Userid:$rootScope.$storage.user.UserID})
             .success(function(result) {
                 callback(result);
             })
@@ -177,7 +171,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         }
         function updateSeller(sellerId,callback){
            var url = apiurl+"api/Home/UpdateSeller";
-            $http.post(url, {sellerId:sellerId,Userid:$rootScope.$storage.user.TempUserId})
+            $http.post(url, {sellerId:sellerId,Userid:$rootScope.$storage.user.UserID})
             .success(function(result) {
                 callback(result);
             })
@@ -188,7 +182,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         }
         function getProductOfCartByUserId(callback){
             var url = apiurl+"api/Home/GetProductOfCartByUserId";
-            $http.post(url, {Userid:$rootScope.$storage.user.TempUserId})
+            $http.post(url, {Userid:$rootScope.$storage.user.UserID})
             .success(function(result) {
                 callback(result);
             })
@@ -199,7 +193,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         }
         function updateMobile(phone,callback){
              var url = apiurl+"api/Home/UpdateMobile";
-            $http.post(url, {UserID:$rootScope.$storage.user.TempUserId,UserName:phone,Deviceid:"123459",Platform:"Android",GCMRegistrationKey:""})
+            $http.post(url, {UserID:$rootScope.$storage.user.UserID,UserName:phone,Deviceid:"22569",Platform:"Android",GCMRegistrationKey:""})
             .success(function(result) {
                 callback(result);
             })
@@ -210,7 +204,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         }
         function otpVerification(otp,callback){
             var url = apiurl+"api/Home/OTPVerfication";
-            $http.post(url, {username:$rootScope.phone,otp:otp})
+            $http.post(url, {UserName:$rootScope.phone,otp:otp})
             .success(function(result) {
                 callback(result);
             })

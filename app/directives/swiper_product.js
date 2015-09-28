@@ -32,6 +32,7 @@ angular.module('app')
 //		dataSVC.getData(function(d){
 dataSVC.getFeaturedProduct($rootScope.$storage.seller.SellerID,function(d){
 			self.data=d.data;
+                        console.log($rootScope.cart);
                         for(var i=0;i<self.data.length;i++){
                             if($rootScope.cart.itemCount > 0){
                                 if($rootScope.cart.items != undefined){

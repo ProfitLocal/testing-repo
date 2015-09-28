@@ -16,7 +16,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
             orderId:null
         });
         
-        $rootScope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) { 
+        $rootScope.open = function(windowClass, templateUrl, size, ctrl,obj,callback) {
 		
         var modalInstance = $modal.open({
             windowClass: windowClass,
@@ -37,28 +37,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 
         });
     };
-	
-	
 	document.addEventListener("deviceready", function() {
-		/*alert('Device Name: '     + device.name     + '<br />' + 
-								'Device Cordova: '  + device.cordova + '<br />' + 
-								'Device Platform: ' + device.platform + '<br />' + 
-								'Device UUID: '     + device.uuid     + '<br />' + 
-								'Device Model: '    + device.model     + '<br />' + 
-								'Device Version: '  + device.version  + '<br />');
-		 var networkState = navigator.connection.type;
-
-	   var states = {};
-		states[Connection.UNKNOWN]  = 'Unknown connection';
-		states[Connection.ETHERNET] = 'Ethernet connection';
-		states[Connection.WIFI]     = 'WiFi connection';
-		states[Connection.CELL_2G]  = 'Cell 2G connection';
-		states[Connection.CELL_3G]  = 'Cell 3G connection';
-		states[Connection.CELL_4G]  = 'Cell 4G connection';
-		states[Connection.CELL]     = 'Cell generic connection';
-		states[Connection.NONE]     = 'No network connection';
-
-		alert('Connection type: ' + states[networkState]);*/
 		$scope.$apply(function () {
 		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
@@ -66,7 +45,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 //            console.log(d);
             if(d.status == true){
                 dataSVC.getProductOfCartByUserId(function(d){
-                    console.log($rootScope.$storage.user);
+                    alert($rootScope.$storage.user.UserID);
                     if(d.status == true){
                         $rootScope.cart = d.data;
                     }else{
@@ -76,7 +55,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                                 items:[]
                         };
                     }
-					console.log($rootScope.$storage.seller);
+					alert($rootScope.$storage.seller);
 	if($rootScope.$storage.seller==null){
 		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
 			$rootScope.appLoaded=true;
@@ -90,7 +69,6 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
             
         }) });
 	});
-       
         
        
 	$rootScope.addToCart=function(obj){
@@ -139,6 +117,10 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                                         {
                                                 $rootScope.cart.items[i].Qnt=$rootScope.cart.items[i].Qnt-1;
                                                 obj.Qnt=$rootScope.cart.items[i].Qnt;
+//                                                $rootScope.cart.total=$rootScope.cart.total-(parseFloat(obj.OfferPrice)*$rootScope.cart.items[i].Qnt);
+//                                                $rootScope.cart.itemCount=$rootScope.cart.itemCount-$rootScope.cart.items[i].Qnt;
+//                                                $rootScope.cart.items[i].Qnt=0
+//                                                obj.Qnt=$rootScope.cart.items[i].Qnt;
                                                 if(obj.Qnt==0){
                                                     index=i;
                                                 }
@@ -156,9 +138,10 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
             });
         }
 	}
+
 		
 	//$rootScope.appLoaded=true;
-	/*$scope.loadDb=function(){
+	$scope.loadDb=function(){
 		var db = window.sqlitePlugin.openDatabase({name: "DB"});
 		db.transaction(function(tx) {
 			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
@@ -176,7 +159,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 			});
 			
 		});
-	}*/
+	}
 	//$scope.loadDb();
         
 }]);

@@ -3,7 +3,12 @@ app.controller('orderController', function($scope,$rootScope,dataSVC) {
 	$rootScope.pageTitle='Kitbucket';
 	$rootScope.backLink='#menu';
 	$rootScope.backImage='glyphicon-menu-hamburger';
-        $scope.checkOutLink = "#/app/checkout";
+//        console.log($rootScope.$storage.user);
+        if($rootScope.$storage.user.IsTempUser == false){
+            $scope.checkOutLink = "#";
+        }else{
+            $scope.checkOutLink = "#/app/checkout";
+        }
 	$scope.$on('ngRepeatFinished', function () {
             
    //initialize swiper when document ready  
