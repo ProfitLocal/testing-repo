@@ -4,7 +4,7 @@
 
 body {
 	font-family: 'Lato', sans-serif;
-	font-size:12pt;
+	font-size:10pt;
 }
 /* common css */
 .wrapper {
@@ -129,7 +129,7 @@ body {
 	height: 44px;
 }
 .page_header .icon {
-	padding: 8px 6px 6px 0;
+	padding: 7px 6px 5px 0;
 }
 .page_header .icon a {
 	color: #fff;
@@ -399,8 +399,6 @@ body {
 	list-style: none;
 	margin: 0;
 	padding:0;
-	height:40px;
-	overflow:hidden;
 }
 .sub_cat li {
 	float: left;
@@ -454,6 +452,118 @@ body {
 .cart_footer .cat_list {
 	max-height:280px;
 	overflow:auto;
+}
+/* bucketWrap */
+.bucketWrap {
+	padding: 15px;
+}
+.bucketWrap .bucket_summary {
+	border-bottom: 1px solid #ddd;
+}
+.bucketWrap .bucket_summary > ul {
+}
+.bucketWrap .bucket_summary > ul li {
+	padding: 2px 0;
+	float: left;
+	width: 100%;
+	line-height: 30px;
+}
+.bucketWrap .bucket_summary > ul li hr {
+	margin:5px 0;
+}
+.bucketWrap .bucket_summary > ul li .value {
+}
+.bucketWrap .bucket_summary > ul li .title {
+	margin:0;
+	line-height: 30px;
+}
+.couponWrap {
+	padding: 15px 0;
+}
+.couponWrap .input-group-btn .btn {
+	width:48px
+}
+.payMethod {
+	padding: 15px;
+	background-color: #f5f5f5;
+}
+.payMethod .payList {
+}
+.box {
+	padding: 15px 0;
+}
+.orderWrap {
+	padding: 0 15px;
+}
+.orderWrap .orderSec {
+	padding: 15px;
+	background-color: #f5f5f5;
+	margin: 15px 0;
+	border: 1px solid #d6d6d6;
+}
+.orderWrap .orderSec .orderHeader {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 10px;
+}
+.orderWrap .orderSec .orderContent {
+}
+.orderWrap .orderSec .orderContent .orderDetails {
+}
+.orderWrap .orderSec .orderContent .orderDetails .orderID {
+	color: #aaa;
+}
+.orderWrap .orderSec .orderContent .orderStatus {
+}
+.orderWrap .orderSec .orderContent .orderDetails .orderBar {
+}
+.orderBar .bar
+{
+	float: left;
+	width: 50%;
+	position: relative;
+	height: 34px;
+}
+.orderBar .bar:after
+{
+	content:"";
+	position:absolute;
+	left:0;
+	right:0;
+	height:10px;
+	top:50%;
+	margin-top:-5px;
+	background:#ddd;
+}
+.orderBar .bar .btn
+{
+	outline: none;
+	position: absolute;
+	z-index: 1;
+	
+}
+.orderBar .bar .ordered
+{
+left: 0;}
+.orderBar .bar .packed
+{
+right: -21px;}
+.orderBar .bar .delivered
+{
+right: 0;}
+
+.step1 .ordered.btn, .step2 .ordered.btn, .step2 .packed.btn, .step3 .delivered.btn, .step3 .packed.btn, .step3 .ordered.btn
+{
+	background-color:#1A9870;
+	border:1px solid #158460;
+	color:#fff;
+}
+.step1 .ordered.btn .fa:before, .step2 .ordered.btn .fa:before, .step2 .packed.btn .fa:before, .step3 .delivered.btn .fa:before, .step3 .packed.btn .fa:before, .step3 .ordered.btn .fa:before
+{
+content:"\f00c"
+}
+.step3 .bar:after, .step2 .first.bar:after
+{
+	background-color:#1A9870;
 }
 @media (max-width:480px) {
  .wc_wrap .logo_box a img {
