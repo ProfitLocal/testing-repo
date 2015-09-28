@@ -28,12 +28,13 @@
 <div class="wrapper"> 
   
 	<div class="wc_wrap minHeight" style="min-height: 667px;" ng-if="!$root.appLoaded">
-		<div class="logo_box"> <a href="#"> <img src="assets/img/welcome_logo_white.png" alt="kitbucket"> </a>
+		<div class="logo_box"> <a href="#"> <img src="http://122.160.153.14:183/images/orderedList9.png" alt="kitbucket"> </a>
 		  <h3 class="tagline">Your online kirana store ff</h3>
 		  {{$root.error}}
 		</div>
 		<div class="wc_loading"><img src="assets/img/wc_loading.gif" alt="kitbucket-loading"></div>
   </div>  
+  
   <div  ui-view ng-if="$root.appLoaded" ></div>
 </div>
   <script src="cordova.js"></script>
