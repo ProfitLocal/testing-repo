@@ -60,7 +60,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 
 		alert('Connection type: ' + states[networkState]);*/
 		$scope.$apply(function () {
-		/* dataSVC.getUser(device.uuid,device.platform,'',function(d){
+		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
             alert(d.status)
 //            console.log(d);
@@ -88,13 +88,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                 })
             }
             
-        }) */
-		
-		dataSVC.getData(function(d){
-			alert(d)
-			$rootScope.appLoaded=true;
-		})
-		});
+        }) });
 	});
        
         
