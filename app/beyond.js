@@ -41,7 +41,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 		$scope.$apply(function () {
 		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
-            alert(d.status)
+            
 //            console.log(d);
             if(d.status == true){
                 dataSVC.getProductOfCartByUserId(function(d){
@@ -142,8 +142,10 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 		
 	//$rootScope.appLoaded=true;
 	$scope.loadDb=function(){
+		alert('db')
 		var db = window.sqlitePlugin.openDatabase({name: "DB"});
 		db.transaction(function(tx) {
+			alert(d.status)
 			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 			tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
           alert("insertId: " + res.insertId + " -- probably 1");
