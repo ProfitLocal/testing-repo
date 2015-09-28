@@ -144,8 +144,9 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 	$scope.loadDb=function(){
 		alert('db')
 		var db = window.sqlitePlugin.openDatabase({name: "DB"});
+		alert(db)
 		db.transaction(function(tx) {
-			alert(d.status)
+			
 			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 			tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
           alert("insertId: " + res.insertId + " -- probably 1");
