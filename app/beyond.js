@@ -37,7 +37,33 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 
         });
     };
+		
+	//$rootScope.appLoaded=true;
+	$scope.loadDb=function(){
+		alert('db')
+		var db = window.sqlitePlugin.openDatabase({name: "DB"});
+		alert(db)
+		db.transaction(function(tx) {
+			
+			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
+			tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
+          alert("insertId: " + res.insertId + " -- probably 1");
+          alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
+              alert("res.rows.length: " + res.rows.length + " -- should be 1");
+              alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+            }, function(e) {
+				alert("ERROR: " + e.message);
+			});
+			}, function(e) {
+				alert("ERROR: " + e.message);
+			});
+			
+		});
+	}
+	
 	document.addEventListener("deviceready", function() {
+		$scope.loadDb();
 		$scope.$apply(function () {
 		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
@@ -139,30 +165,5 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
         }
 	}
 
-		
-	//$rootScope.appLoaded=true;
-	$scope.loadDb=function(){
-		alert('db')
-		var db = window.sqlitePlugin.openDatabase({name: "DB"});
-		alert(db)
-		db.transaction(function(tx) {
-			
-			tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
-			tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
-          alert("insertId: " + res.insertId + " -- probably 1");
-          alert("rowsAffected: " + res.rowsAffected + " -- should be 1");
-            tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
-              alert("res.rows.length: " + res.rows.length + " -- should be 1");
-              alert("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
-            }, function(e) {
-				alert("ERROR: " + e.message);
-			});
-			}, function(e) {
-				alert("ERROR: " + e.message);
-			});
-			
-		});
-	}
-	$scope.loadDb();
         
 }]);
