@@ -38,15 +38,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
         });
     };
 	
-	console.log($rootScope.$storage.seller);
-	if($rootScope.$storage.seller==null){
-		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
-			$rootScope.appLoaded=true;
-		});
-	}
-	else{
-		$rootScope.appLoaded=true;
-	}
+	
 	document.addEventListener("deviceready", function() {
 		/*alert('Device Name: '     + device.name     + '<br />' + 
 								'Device Cordova: '  + device.cordova + '<br />' + 
@@ -68,7 +60,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 
 		alert('Connection type: ' + states[networkState]);*/
 		$scope.$apply(function () {
-		 dataSVC.getUser(device.uuid,device.platform,'',function(d){
+		/* dataSVC.getUser(device.uuid,device.platform,'',function(d){
             $rootScope.$storage.user = d.data;
             alert(d.status)
 //            console.log(d);
@@ -84,11 +76,25 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                                 items:[]
                         };
                     }
-					
+					console.log($rootScope.$storage.seller);
+	if($rootScope.$storage.seller==null){
+		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
+			$rootScope.appLoaded=true;
+		});
+	}
+	else{
+		$rootScope.appLoaded=true;
+	}
                 })
             }
             
-        }) });
+        }) */
+		
+		dataSVC.getData(function(d){
+			alert(d)
+			$rootScope.appLoaded=true;
+		})
+		});
 	});
        
         
