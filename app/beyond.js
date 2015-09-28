@@ -38,7 +38,15 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
         });
     };
 	
-	
+	console.log($rootScope.$storage.seller);
+	if($rootScope.$storage.seller==null){
+		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
+			$rootScope.appLoaded=true;
+		});
+	}
+	else{
+		$rootScope.appLoaded=true;
+	}
 	document.addEventListener("deviceready", function() {
 		/*alert('Device Name: '     + device.name     + '<br />' + 
 								'Device Cordova: '  + device.cordova + '<br />' + 
@@ -76,15 +84,7 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
                                 items:[]
                         };
                     }
-					console.log($rootScope.$storage.seller);
-	if($rootScope.$storage.seller==null){
-		$rootScope.open('modal-message modal-success','views/partials/selectseller.html','','SellerSelectionController',{},function(res){
-			$rootScope.appLoaded=true;
-		});
-	}
-	else{
-		$rootScope.appLoaded=true;
-	}
+					
                 })
             }
             
