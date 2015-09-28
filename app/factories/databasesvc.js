@@ -101,7 +101,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
            
             var url = apiurl+"api/Home/SetupUser";
 			 alert(url)
-			// $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+			 $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
                     $http.post(url, {deviceid:deviceid,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
                     .success(function(result) {
                         callback(result);
