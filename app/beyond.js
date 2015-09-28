@@ -160,6 +160,6 @@ app.controller('AppCtrl', ['$scope','$rootScope', 'dataSVC','$localStorage','$mo
 			
 		});
 	}
-	//$scope.loadDb();
+	$scope.loadDb();
         
 }]);
