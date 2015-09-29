@@ -100,7 +100,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         function getUser(deviceid,Platform,GCMRegistrationKey,callback){
             //var randomnumber = Math.floor((Math.random()*6)+1);
             var url = apiurl+"api/Home/SetupUser";
-                    $http.post(url, {deviceid:43325,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
+                    $http.post(url, {deviceid:deviceid,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
                     .success(function(result) {
 						console.log(result);
                         callback(result);
