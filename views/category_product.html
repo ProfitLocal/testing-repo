@@ -1,0 +1,49 @@
+ <style ng-bind-html-unsafe="$root.style"></style>
+ <div ng-controller="category_productController" ng-animate="{enter: 'enter', leave: 'leave'}">
+ <!-- search panel -->
+    <div id="searchPanel">
+      <div></div>
+    </div>
+    <!-- filter panel -->
+    <div id="filterPanel">
+      <div></div>
+    </div>
+    <!-- banner -->
+    <div class="image_slider">
+      <div class="slider_content_list">
+        <div class=""> <img class="" src="assets/img/slider/img1.jpg" alt="" /> </div>
+      </div>
+      <div class="cat_title">
+        <h4>{{category.CategoryName}}</h4>
+      </div>
+      <!-- sub-category   -->
+      <div class="sub_cat" ng-swipe-right="leftClick()" ng-swipe-left="rightClick()" >
+        <ul class="">
+          <li ng-class="{'active':c.IsActive}" ng-repeat="c in category.Child"><a href="javascript:void(0)" ng-click="setCategory(c)">{{c.CategoryName}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- category list-->
+    <ul class="cat_list " ng-swipe-right="goToPage('right')" ng-swipe-left="goToPage('left')">
+      <li class="" ng-repeat="p in products">
+        <div class="cat_item clearfix">
+          <div class="imageWrap"><a href="#"><img my-src="{{p.ProductImage}}" alt=""/></a></div>
+          <div class="actions clearfix">
+            <div class="cart">
+              <div class="input-group"> <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="$root.removeFromCart(p)"><i class="fa fa-minus"></i></button>
+                </span> <span class="cartText form-control" >{{p.Qnt!=undefined?p.Qnt:0}}</span> <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="$root.addToCart(p)"><i class="fa fa-plus"></i></button>
+                </span> </div>
+            </div>
+          </div>
+          <div class="productDetail">
+            <h5 class="productName">{{p.ProductName}}</h5>
+            <h5 class="quantity">500ml</h5>
+            <h5 class="price"><span class="oldPrice" ng-if="p.SellPrice!=p.OfferPrice")>Rs. {{p.SellPrice}}</span><span class="newPrice">Rs. {{p.OfferPrice}}</span></h5>
+          </div>
+        </div>
+      </li>
+	  <li ng-if="products.length==0">No product under this category yet</li>
+	  </ul>
+	</div>
