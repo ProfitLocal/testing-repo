@@ -1,5 +1,6 @@
 
 app.controller('SellerSelectionController', function DBController($scope, dataSVC,$localStorage,$rootScope,$window) {
+	alert('SellerSelectionController')
 	var self=this;
 	$scope.sellerList=[];
 	$scope.seller={};
