@@ -14,7 +14,7 @@
     </author>
 	<access origin="*" />
 	<allow-navigation href="*" />
-	<gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.6" />
+	
 	<gap:plugin name="fi.avaus.cordova.geolocation" />
 	<gap:plugin name="cordova.plugins.diagnostic" source="plugins.cordova.io" />
 	<gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
