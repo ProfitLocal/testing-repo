@@ -12,17 +12,24 @@
     <author href="http://sumedhasoftech.com" email="mail@sumedhasoftech.com">
         Sumedha Softech
     </author>
-	
-<feature name="Device">
-    <param name="android-package" value="org.apache.cordova.device.Device" />
-</feature>
-    <preference name="phonegap-version" />
+	<access origin="*" />
+	<allow-navigation href="*" />
+	<gap:plugin name="fi.avaus.cordova.geolocation" />
+	<gap:plugin name="cordova.plugins.diagnostic" source="plugins.cordova.io" />
+	<gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+	<gap:plugin name="com.phonegap.plugins.pushplugin"  />
+     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+   <gap:plugin name="org.apache.cordova.device" version="0.2.12" />  
+    <preference name="phonegap-version" value="cli-5.2.0"/>
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
     <preference name="webviewbounce"    value="true" />
     <preference name="stay-in-webview" value="true" />
 	<preference name="prerendered-icon" value="false"/>
+<preference name="SplashScreen" value="assets/splash/welcome.png"  />
+<preference name="SplashScreenDelay" value="10000" />
+<preference name="SplashScreenBackgroundColor" value="green" /> 
     <icon src="assets/icons/apple-icon.png" />
     <icon src="assets/icons/android-icon-72x72.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="assets/icons/android-icon-96x96.png"   gap:platform="android"    gap:density="mdpi" />

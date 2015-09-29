@@ -1,15 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app" ng-controller="AppCtrl">
 <head>
 <title>KitBucket</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/jquery/custom.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="assets/css/custom.css" rel="stylesheet" />
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+<link href="assets/css/jquery-ui.css" rel="stylesheet" />
+<!-- nav menu -->
+<link rel="stylesheet" href="lib/mmenu/css/jquery.mmenu.all.css" />
+<script type="text/javascript" src="lib/mmenu/js/jquery.mmenu.min.all.js"></script>
 
+<!-- swiper -->
+<link rel="stylesheet" href="assets/swiper/swiper.min.css">
+<script src="assets/swiper/swiper.jquery.min.js"></script>
 </head>
 <!-- /head -->
 <body>
-    <span>rajkumar </span>
+<div class="wrapper"> 
+  
+	<div class="wc_wrap minHeight" style="min-height: 667px;" ng-if="!$root.appLoaded">
+		<div class="logo_box"> <a href="#"> <img src="assets/img/welcome_logo_white.png" alt="kitbucket"> </a>
+		  <h3 class="tagline">Your online kirana store ff</h3>
+		</div>
+		<div class="wc_loading"><img src="assets/img/wc_loading.gif" alt="kitbucket-loading"></div>
+  </div>  
+  <div  ui-view ng-if="$root.appLoaded" ></div>
+</div>
+    <script src="cordova.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-ui-router/angular-ui-router.js"></script>
+    <script src="lib/angular/angular-ocLazyLoad/ocLazyLoad.js"></script>
+    <script src="lib/angular/angular-ngStorage/ngStorage.js"></script>
+    <script src="lib/angular/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular/angular-touch/angular-touch.js"></script>
+    <script src="lib/angular/angular-ui-bootstrap/ui-bootstrap.js"></script>
+	<script src="app/app.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/config.lazyload.js"></script>
+    <script src="app/config.router.js"></script>
+    <script src="app/beyond.js"></script>
+    <script src="app/factories/cordovaGeolocationModule.js"></script>
+    <script src="app/factories/databasesvc.js"></script>
+    <script src="app/directives/endRepeat.js"></script>
+    <script src="app/controllers/sellerselection.js"></script>
+    <script src="app/directives/autocomplete.js"></script>
 <!-- /page -->
 </body>
 </html>
