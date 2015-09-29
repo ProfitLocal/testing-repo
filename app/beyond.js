@@ -1,6 +1,7 @@
 ﻿'use strict';
         app.controller('AppCtrl', ['$scope', '$rootScope', 'dataSVC', '$localStorage', '$modal', 'cordovaGeolocationService','$location', function ($scope, $rootScope, dataSVC, $localStorage, $modal, cordovaGeolocationService,$location) {
-                $rootScope.categories = [];
+                alert('AppCtrl')
+				$rootScope.categories = [];
                 $rootScope.appLoaded = true;
                 $rootScope.isLocationFound = false;
                 $rootScope.error = '';
@@ -62,7 +63,8 @@
 				}
 				//$scope.getUserDetail('5454','Android','');
 	
-				document.addEventListener("deviceready", function() {		
+				document.addEventListener("deviceready", function() {
+					alert('deviceready')
 					$scope.$apply(function () {
 						$scope.getUserDetail(device.uuid,device.platform,'');			
 					});
