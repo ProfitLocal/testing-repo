@@ -16,7 +16,7 @@
 	<gap:plugin name="fi.avaus.cordova.geolocation" />
 	<gap:plugin name="cordova.plugins.diagnostic" source="plugins.cordova.io" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin"  />
-     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+     <gap:plugin name="org.apache.cordova.network-information" />
     <feature name="http://api.phonegap.com/1.0/device" />
 	<feature name="http://api.phonegap.com/1.0/battery"/>
 	<feature name="http://api.phonegap.com/1.0/camera"/> 
