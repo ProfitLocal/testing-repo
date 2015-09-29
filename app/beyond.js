@@ -60,14 +60,14 @@
 
 					})
 				}
-				$scope.getUserDetail('5454','Android','');
+				//$scope.getUserDetail('5454','Android','');
 	
-			/*	document.addEventListener("deviceready", function() {		
+				document.addEventListener("deviceready", function() {		
 					$scope.$apply(function () {
 						$scope.getUserDetail(device.uuid,device.platform,'');			
 					});
 				});
-        */
+        
 
                 $rootScope.addToCart = function (obj) {
 //            console.log(obj);
