@@ -2,7 +2,6 @@
 <html ng-app="app" ng-controller="AppCtrl">
 <head>
 <title>KitBucket</title>
-<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -34,7 +33,6 @@
   </div>  
   <div  ui-view ng-if="$root.appLoaded" ></div>
 </div>
-<script>alert('a')</script>
     <script src="cordova.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-ui-router/angular-ui-router.js"></script>

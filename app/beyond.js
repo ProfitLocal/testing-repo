@@ -1,7 +1,6 @@
 ﻿'use strict';
         app.controller('AppCtrl', ['$scope', '$rootScope', 'dataSVC', '$localStorage', '$modal', 'cordovaGeolocationService','$location', function ($scope, $rootScope, dataSVC, $localStorage, $modal, cordovaGeolocationService,$location) {
-                alert('AppCtrl')
-				$rootScope.categories = [];
+                $rootScope.categories = [];
                 $rootScope.appLoaded = true;
                 $rootScope.isLocationFound = false;
                 $rootScope.error = '';
@@ -61,15 +60,14 @@
 
 					})
 				}
-				//$scope.getUserDetail('5454','Android','');
+			//	$scope.getUserDetail('5454','Android','');
 	
-				document.addEventListener("deviceready", function() {
-					alert('deviceready')
+				document.addEventListener("deviceready", function() {		
 					$scope.$apply(function () {
 						$scope.getUserDetail(device.uuid,device.platform,'');			
 					});
 				});
-        
+       
 
                 $rootScope.addToCart = function (obj) {
 //            console.log(obj);
