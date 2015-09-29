@@ -32,7 +32,7 @@ angular.module('app')
 //		dataSVC.getData(function(d){
 dataSVC.getFeaturedProduct($rootScope.$storage.seller.SellerID,function(d){
 			self.data=d.data;
-//                        console.log($rootScope.cart);
+                        console.log($rootScope.cart);
                         for(var i=0;i<self.data.length;i++){
                             if($rootScope.cart.itemCount > 0){
                                 if($rootScope.cart.items != undefined){
@@ -43,7 +43,7 @@ dataSVC.getFeaturedProduct($rootScope.$storage.seller.SellerID,function(d){
                                 }
                             }
                         }
-//                        console.log(self.data);
+                        console.log(self.data);
 				  $timeout(function(){
 //					  console.log(d.data)
 					 var mySwiper = new Swiper ('.swiper-container', {

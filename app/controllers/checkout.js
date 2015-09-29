@@ -37,7 +37,7 @@ app.controller('checkoutController', function($scope,$rootScope,dataSVC) {
          }
          if(!$scope.phoneField){
              dataSVC.updateMobile($scope.phone,function(d){
-//                console.log(d);
+                console.log(d);
                 if(d.status== true){
                     $scope.showOtp = true;
                     $scope.showMobile = false;
@@ -53,7 +53,7 @@ app.controller('checkoutController', function($scope,$rootScope,dataSVC) {
     $scope.otpVerification = function(){
          if($scope.otp.length > 0){
              dataSVC.otpVerification($scope.otp,function(d){
-//                console.log(d);
+                console.log(d);
                 if(d.status== true){
                     $scope.msg = d.Message;
                     $rootScope.$storage.user = d.data;
