@@ -12,24 +12,30 @@
     <author href="http://sumedhasoftech.com" email="mail@sumedhasoftech.com">
         Sumedha Softech
     </author>
-	<access origin="*" />
-	<allow-navigation href="*" />
+		<access origin="*" />
 	<gap:plugin name="fi.avaus.cordova.geolocation" />
 	<gap:plugin name="cordova.plugins.diagnostic" source="plugins.cordova.io" />
-	<gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin"  />
-     <gap:plugin name="org.apache.cordova.network-information"  />
-   <gap:plugin name="org.apache.cordova.device" />  
-    <preference name="phonegap-version" value="cli-5.2.0"/>
+     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+    <feature name="http://api.phonegap.com/1.0/device" />
+	<feature name="http://api.phonegap.com/1.0/battery"/>
+	<feature name="http://api.phonegap.com/1.0/camera"/> 
+	<feature name="http://api.phonegap.com/1.0/contacts"/>
+	<feature name="http://api.phonegap.com/1.0/file"/> 
+	<feature name="http://api.phonegap.com/1.0/geolocation"/> 
+	<feature name="http://api.phonegap.com/1.0/media"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/notification"/>
+<feature name="Device">
+    <param name="android-package" value="org.apache.cordova.device.Device" />
+</feature>
+    <preference name="phonegap-version" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
     <preference name="webviewbounce"    value="true" />
     <preference name="stay-in-webview" value="true" />
 	<preference name="prerendered-icon" value="false"/>
-<preference name="SplashScreen" value="assets/splash/welcome.png"  />
-<preference name="SplashScreenDelay" value="10000" />
-<preference name="SplashScreenBackgroundColor" value="green" /> 
     <icon src="assets/icons/apple-icon.png" />
     <icon src="assets/icons/android-icon-72x72.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="assets/icons/android-icon-96x96.png"   gap:platform="android"    gap:density="mdpi" />
