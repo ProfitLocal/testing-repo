@@ -56,7 +56,6 @@ angular.module('app')
                             ]
                         }
                     })
-
                     .state('location', {
                         url: '/location',
                         templateUrl: 'views/location.html',
