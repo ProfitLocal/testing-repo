@@ -100,9 +100,9 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         function getUser(deviceid,Platform,GCMRegistrationKey,callback){
             //var randomnumber = Math.floor((Math.random()*6)+1);
             var url = apiurl+"api/Home/SetupUser";
-                    $http.post(url, {deviceid:"22569",Platform:"Android",GCMRegistrationKey:""})
+                    $http.post(url, {deviceid:deviceid,Platform:Platform,GCMRegistrationKey:GCMRegistrationKey})
                     .success(function(result) {
-						console.log(result)
+						console.log(result);
                         callback(result);
                     })
                     .error(function(e, r, s,t,h) {	
@@ -127,13 +127,13 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
 						$rootScope.appLoaded=false;
                     });
         }
-        function removeFromCart(p,IsPackage,callback){
+        function removeFromCart(p,IsPackage,orderId,callback){
 //           console.log(p);
-            if($rootScope.$storage.orderId == null){
-                var orderId = 0;
-            }else{
-                var orderId = $rootScope.$storage.orderId;
-            }
+//            if($rootScope.$storage.orderId == null){
+//                var orderId = 0;
+//            }else{
+//                var orderId = $rootScope.$storage.orderId;
+//            }
             
                     if(p.Qnt > 1){
                         var url = apiurl+"api/Home/UpdateProductFromcart";
@@ -193,7 +193,7 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         }
         function updateMobile(phone,callback){
              var url = apiurl+"api/Home/UpdateMobile";
-            $http.post(url, {UserID:$rootScope.$storage.user.UserID,UserName:phone,Deviceid:"22569",Platform:"Android",GCMRegistrationKey:""})
+            $http.post(url, {UserID:$rootScope.$storage.user.UserID,UserName:phone,Deviceid:$rootScope.$storage.user.Deviceid,Platform:"Android",GCMRegistrationKey:""})
             .success(function(result) {
                 callback(result);
             })
@@ -205,6 +205,17 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
         function otpVerification(otp,callback){
             var url = apiurl+"api/Home/OTPVerfication";
             $http.post(url, {UserName:$rootScope.phone,otp:otp})
+            .success(function(result) {
+                callback(result);
+            })
+            .error(function(e, r, s,t,h) {	
+                                        $rootScope.error='No internet connection available';
+                                        $rootScope.appLoaded=false;
+            }); 
+        }
+        function getArea(area,callback){
+            var url = apiurl+"api/Home/GetArea";
+            $http.post(url, {keyword:area})
             .success(function(result) {
                 callback(result);
             })
@@ -228,6 +239,8 @@ angular.module('app').factory("dataSVC", ["$http", "$location","$rootScope", fun
                         updateSeller:updateSeller,
                         getProductOfCartByUserId:getProductOfCartByUserId,
                         updateMobile:updateMobile,
-                        otpVerification:otpVerification
+                        otpVerification:otpVerification,
+                        getArea:getArea
+                        
 		}
 }]);

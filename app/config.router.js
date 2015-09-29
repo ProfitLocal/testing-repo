@@ -27,7 +27,7 @@ angular.module('app')
             function ($stateProvider, $urlRouterProvider) {
 
                 $urlRouterProvider
-                    .otherwise('/app/home');
+                    .otherwise('/area');
                 $stateProvider
                     .state('app', {
                         abstract: true,
@@ -47,8 +47,8 @@ angular.module('app')
 											   'assets/css/custom.css',
 											   'app/directives/menu.js',
 //											   'app/directives/swiper.js',
-                                                                                           'app/directives/swiper_product.js',
-                                                                                           'app/directives/swiper_package.js',
+                                                'app/directives/swiper_product.js',
+                                                 'app/directives/swiper_package.js',
 											   'app/directives/mySrc.js',
                                         ]
                                     });
@@ -195,6 +195,26 @@ angular.module('app')
                                         serie: true,
                                         files: [
                                             'app/controllers/checkout.js'                                           
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    })
+                    .state('area', {
+                        url: '/area',
+                        templateUrl: 'views/partials/selectseller.html',
+                        ncyBreadcrumb: {
+                            label: 'location'
+                        },
+                        resolve: {
+                            deps: [
+                                '$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        serie: true,
+                                        files: [
+                                            'app/controllers/sellerselection.js'                                           
                                         ]
                                     });
                                 }
