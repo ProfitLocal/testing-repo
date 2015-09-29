@@ -13,7 +13,7 @@
         Sumedha Softech
     </author>
 		<access origin="*" />
-	<gap:plugin name="fi.avaus.cordova.geolocation" />
+	
 	<gap:plugin name="cordova.plugins.diagnostic" source="plugins.cordova.io" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin"  />
      <gap:plugin name="org.apache.cordova.network-information" />
